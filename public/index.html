@@ -1,0 +1,582 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <title>Student's Day — High School Event</title>
+  <meta name="description"
+    content="Student's Day — Join us for exciting activities, competitions, and fun at our high school event!" />
+  <link rel="preconnect" href="https://fonts.googleapis.com" />
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin />
+  <link href="https://fonts.googleapis.com/css2?family=Outfit:wght@300;400;500;600;700;800&display=swap"
+    rel="stylesheet" />
+  <link rel="stylesheet" href="style.css" />
+</head>
+
+<body>
+  <!-- ===== TOP NAV ===== -->
+  <header class="navbar" id="navbar">
+    <a href="#" class="navbar__logo" data-page="home">
+      <img src="img/logo.png" alt="Instituto Chapultepec Norte" class="logo-image" />
+    </a>
+
+    <button class="navbar__hamburger" id="hamburger" aria-label="Toggle menu">
+      <span></span><span></span><span></span>
+    </button>
+
+    <nav class="navbar__links" id="navLinks">
+      <a href="#" class="nav-link active" data-page="home">Home</a>
+      <a href="#" class="nav-link" data-page="activities">Activities</a>
+      <a href="#" class="nav-link" data-page="schedule">Horario</a>
+      <a href="#" class="nav-link" data-page="register">Register</a>
+      <a href="#" class="nav-link" data-page="brackets">Brackets</a>
+      <a href="#" class="nav-link" data-page="winners">Winners</a>
+    </nav>
+  </header>
+
+  <!-- ===== PAGE: HOME ===== -->
+  <main>
+    <section class="page page--active" id="page-home">
+      <div class="hero">
+        <div class="hero__particles" id="particles"></div>
+        <div class="hero__content">
+          <span class="hero__badge">🎉 2026 Edition</span>
+          <h1 class="hero__title">Student's<br /><span class="highlight">Day</span></h1>
+          <p class="hero__subtitle">
+            A full day of competitions, creativity, and school spirit.<br />
+            Are you ready to make memories?
+          </p>
+          <div class="hero__actions">
+            <button class="btn btn--primary" data-page="register">Register Now</button>
+            <button class="btn btn--outline" data-page="activities">See Activities</button>
+          </div>
+        </div>
+        <div class="hero__stats">
+          <div class="stat-card">
+            <span class="stat-card__number" data-count="12">0</span>
+            <span class="stat-card__label">Activities</span>
+          </div>
+          <div class="stat-card">
+            <span class="stat-card__number" data-count="200">0</span>
+            <span class="stat-card__label">Students</span>
+          </div>
+          <div class="stat-card">
+            <span class="stat-card__number" data-count="1">0</span>
+            <span class="stat-card__label">Epic Day</span>
+          </div>
+        </div>
+      </div>
+
+      <!-- Countdown -->
+      <div class="countdown-section">
+        <h2 class="section-title">Event Countdown</h2>
+        <div class="countdown" id="countdown">
+          <div class="countdown__block">
+            <span class="countdown__number" id="cd-days">00</span>
+            <span class="countdown__label">Days</span>
+          </div>
+          <div class="countdown__sep">:</div>
+          <div class="countdown__block">
+            <span class="countdown__number" id="cd-hours">00</span>
+            <span class="countdown__label">Hours</span>
+          </div>
+          <div class="countdown__sep">:</div>
+          <div class="countdown__block">
+            <span class="countdown__number" id="cd-mins">00</span>
+            <span class="countdown__label">Minutes</span>
+          </div>
+          <div class="countdown__sep">:</div>
+          <div class="countdown__block">
+            <span class="countdown__number" id="cd-secs">00</span>
+            <span class="countdown__label">Seconds</span>
+          </div>
+        </div>
+      </div>
+
+      <!-- Quick Info -->
+      <div class="info-cards">
+        <div class="info-card">
+          <div class="info-card__icon">📍</div>
+          <h3>Location</h3>
+          <p>Main Campus — Gymnasium &amp; Sports Fields</p>
+        </div>
+        <div class="info-card">
+          <div class="info-card__icon">📅</div>
+          <h3>Date</h3>
+          <p>June 15, 2026 — 8:00 AM to 5:00 PM</p>
+        </div>
+        <div class="info-card">
+          <div class="info-card__icon">🏆</div>
+          <h3>Prizes</h3>
+          <p>Trophies, medals, and special certificates</p>
+        </div>
+      </div>
+    </section>
+
+    <!-- ===== PAGE: ACTIVITIES ===== -->
+    <section class="page" id="page-activities">
+      <div class="page-header">
+        <h1 class="page-header__title">Activities</h1>
+        <p class="page-header__sub">Choose your arena. Show your talent.</p>
+      </div>
+
+      <div class="filter-bar" id="filterBar">
+        <button class="filter-btn active" data-filter="all">All</button>
+        <button class="filter-btn" data-filter="sports">Sports</button>
+        <button class="filter-btn" data-filter="arts">Arts</button>
+        <button class="filter-btn" data-filter="academic">Academic</button>
+        <button class="filter-btn" data-filter="fun">Fun</button>
+      </div>
+
+      <div class="activities-grid" id="activitiesGrid">
+        <!-- Cards injected by JS -->
+      </div>
+    </section>
+
+    <!-- ===== PAGE: REGISTER ===== -->
+    <section class="page" id="page-register">
+      <div class="page-header">
+        <h1 class="page-header__title">Register</h1>
+        <p class="page-header__sub">Pick your activity and secure your spot.</p>
+      </div>
+
+      <!-- Registration Form -->
+      <div class="register-wrapper" id="registerWrapper">
+        <!-- Step 1: Access Code -->
+        <div id="registerStep1">
+          <form class="register-form" id="verifyForm" autocomplete="off">
+            <div class="form-group" style="text-align: center;">
+              <label for="accessCode" style="font-size: 1.1rem; margin-bottom: 12px;">Ingresa tu Código de Acceso</label>
+              <input type="text" id="accessCode" placeholder="Ej. XK9M2" required style="text-align: center; font-size: 1.5rem; letter-spacing: 3px; max-width: 300px; margin: 0 auto;" />
+            </div>
+            <p id="verifyError" style="color: #dc2626; text-align: center; margin-top: 10px; font-weight: 600; min-height: 20px;"></p>
+            <button type="submit" class="btn btn--primary btn--full" id="verifyBtn" style="max-width: 300px; margin: 20px auto 0;">
+              <span>Verificar Código</span>
+            </button>
+          </form>
+        </div>
+
+        <!-- Step 2: Activities (Hidden initially) -->
+        <div id="registerStep2" style="display: none;">
+          <div class="student-profile" style="background: var(--surface); border: 1px solid var(--navy-100); padding: 16px; border-radius: var(--radius-sm); margin-bottom: 24px; text-align: center;">
+            <div style="font-size: 2rem; margin-bottom: 8px;">🎓</div>
+            <h3 id="displayStudentName" style="color: var(--navy-900); font-size: 1.2rem; margin-bottom: 4px;"></h3>
+            <p id="displayStudentDetails" style="color: var(--text-muted); font-size: 0.9rem;"></p>
+          </div>
+
+          <form class="register-form" id="registerForm" autocomplete="off">
+            <div class="form-group" id="activitySelectionContainer">
+              <label>Selecciona tus actividades</label>
+              <div class="activity-checklist" id="regChecklist">
+                <!-- Rendered by JS -->
+              </div>
+            </div>
+
+            <!-- Dynamic spots indicator -->
+            <div class="spots-indicator" id="spotsIndicator">
+              <!-- Filled by JS when an activity is selected -->
+            </div>
+
+            <button type="submit" class="btn btn--primary btn--full" id="submitBtn">
+              <span>Submit Registration</span>
+              <svg class="btn-arrow" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2">
+                <path d="M5 12h14M12 5l7 7-7 7" />
+              </svg>
+            </button>
+            <button type="button" class="btn btn--outline btn--full" id="backToStep1Btn" style="margin-top: 12px;">
+              <span>Cambiar Código</span>
+            </button>
+          </form>
+        </div>
+
+        <!-- Confirmation Card (hidden by default) -->
+        <div class="confirm-card" id="confirmCard">
+          <div class="confirm-card__icon">🎉</div>
+          <h2 class="confirm-card__title">You're In!</h2>
+          <p class="confirm-card__msg" id="confirmMsg"></p>
+          <div class="confirm-card__details" id="confirmDetails"></div>
+          <button class="btn btn--primary" id="confirmNewBtn">Register Another</button>
+        </div>
+      </div>
+
+      <!-- Toast (kept as fallback) -->
+      <div class="toast" id="toast">
+        <span class="toast__icon">✅</span>
+        <span class="toast__msg">Registration submitted successfully!</span>
+      </div>
+    </section>
+
+    <!-- ===== PAGE: BRACKETS ===== -->
+    <section class="page" id="page-brackets">
+      <div class="page-header">
+        <h1 class="page-header__title">Brackets</h1>
+        <p class="page-header__sub">Follow the tournament matchups in real time.</p>
+      </div>
+
+      <div class="bracket-controls">
+        <div class="bracket-selector">
+          <button class="bracket-tab active" data-bracket="basketball">🏀 Basketball</button>
+          <button class="bracket-tab" data-bracket="soccer">⚽ Soccer</button>
+          <button class="bracket-tab" data-bracket="volleyball">🏐 Volleyball</button>
+        </div>
+        <button class="admin-toggle" id="adminToggle" title="Edit bracket data">
+          <svg width="18" height="18" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2">
+            <path d="M11 4H4a2 2 0 0 0-2 2v14a2 2 0 0 0 2 2h14a2 2 0 0 0 2-2v-7" />
+            <path d="M18.5 2.5a2.121 2.121 0 0 1 3 3L12 15l-4 1 1-4 9.5-9.5z" />
+          </svg>
+          <span>Edit</span>
+        </button>
+      </div>
+
+      <!-- Champion banner -->
+      <div class="champion-banner" id="championBanner">
+        <!-- Injected by JS -->
+      </div>
+
+      <!-- Horizontal bracket tree -->
+      <div class="bracket-scroll">
+        <div class="bracket-tree" id="bracketTree">
+          <!-- Injected by JS -->
+        </div>
+      </div>
+
+      <!-- Admin panel (hidden by default) -->
+      <div class="admin-panel" id="adminPanel">
+        <div class="admin-panel__header">
+          <h3>📝 Edit Bracket Data (JSON)</h3>
+          <button class="admin-panel__close" id="adminClose">&times;</button>
+        </div>
+        <textarea class="admin-panel__editor" id="adminEditor" spellcheck="false"></textarea>
+        <div class="admin-panel__actions">
+          <button class="btn btn--outline admin-btn" id="adminReset">Reset</button>
+          <button class="btn btn--primary admin-btn" id="adminApply">Apply Changes</button>
+        </div>
+        <div class="admin-panel__feedback" id="adminFeedback"></div>
+      </div>
+    </section>
+
+    <!-- ===== PAGE: SCHEDULE ===== -->
+    <section class="page" id="page-schedule">
+      <div class="page-header">
+        <div class="schedule-hero-icon">📅</div>
+        <h1 class="page-header__title">Horario de Eventos</h1>
+        <p class="page-header__sub">Dos semanas de competencias, cultura y diversión.</p>
+      </div>
+
+      <div class="schedule-tabs">
+        <button class="schedule-tab active" data-week="week1">Semana 1 — Semana del Estudiante</button>
+        <button class="schedule-tab" data-week="week2">Semana 2 — High Week</button>
+      </div>
+
+      <div class="schedule-days" id="scheduleDays">
+        <!-- Day cards injected by JS -->
+      </div>
+    </section>
+
+    <!-- ===== PAGE: WINNERS ===== -->
+    <section class="page" id="page-winners">
+      <!-- Confetti canvas -->
+      <canvas class="confetti-canvas" id="confettiCanvas"></canvas>
+
+      <div class="page-header winners-hero">
+        <div class="winners-hero__trophy">🏆</div>
+        <h1 class="page-header__title">Hall of Champions</h1>
+        <p class="page-header__sub">Celebrating the legends of Student's Day 2026</p>
+      </div>
+
+      <!-- Category filter tabs -->
+      <div class="winners-filters" id="winnersFilters">
+        <!-- Injected by JS -->
+      </div>
+
+      <!-- Winners grid -->
+      <div class="winners-grid" id="winnersGrid">
+        <!-- Winner cards injected by JS -->
+      </div>
+    </section>
+    <!-- ===== PAGE: ADMIN ===== -->
+    <section class="page" id="page-admin">
+      <!-- Password Gate -->
+      <div class="admin-gate" id="adminGate">
+        <div class="admin-gate__card">
+          <div class="admin-gate__icon">🔐</div>
+          <h2 class="admin-gate__title">Panel de Administración</h2>
+          <p class="admin-gate__sub">Ingresa la contraseña para continuar</p>
+          <form class="admin-gate__form" id="adminLoginForm">
+            <input type="password" id="adminPassword" placeholder="Contraseña" autocomplete="off" />
+            <button type="submit" class="btn btn--primary btn--full">Acceder</button>
+          </form>
+          <p class="admin-gate__error" id="adminLoginError"></p>
+        </div>
+      </div>
+
+      <!-- Admin Dashboard (hidden until auth) -->
+      <div class="admin-dashboard" id="adminDashboard" style="display:none">
+        <div class="page-header">
+          <h1 class="page-header__title">⚙️ Panel Admin</h1>
+          <p class="page-header__sub">Gestiona actividades, brackets, ganadores y registros.</p>
+        </div>
+
+        <div class="admin-tabs">
+          <button class="admin-tab active" data-admin-tab="activities">📋 Actividades</button>
+          <button class="admin-tab" data-admin-tab="brackets">🏆 Brackets</button>
+          <button class="admin-tab" data-admin-tab="winners">🥇 Ganadores</button>
+          <button class="admin-tab" data-admin-tab="registrations">📊 Registros</button>
+          <button class="admin-tab" data-admin-tab="logs">📡 Logs</button>
+        </div>
+
+        <!-- Tab: Activities -->
+        <div class="admin-tab-content active" id="adminTab-activities">
+          <div class="admin-section-header">
+            <h2>Gestionar Actividades</h2>
+            <button class="btn btn--primary btn--sm" id="addActivityBtn">+ Nueva Actividad</button>
+          </div>
+          <div class="admin-table-wrap">
+            <table class="admin-table" id="adminActivitiesTable">
+              <thead>
+                <tr>
+                  <th>Emoji</th>
+                  <th>Nombre</th>
+                  <th>Día</th>
+                  <th>Categoría</th>
+                  <th>Máx</th>
+                  <th>Inscritos</th>
+                  <th>Acciones</th>
+                </tr>
+              </thead>
+              <tbody id="adminActivitiesBody">
+                <!-- JS -->
+              </tbody>
+            </table>
+          </div>
+        </div>
+
+        <!-- Tab: Brackets -->
+        <div class="admin-tab-content" id="adminTab-brackets">
+          <div class="admin-section-header">
+            <h2>Editar Brackets</h2>
+            <select id="adminBracketSport" class="admin-select">
+              <option value="basketball">🏀 Basketball</option>
+              <option value="soccer">⚽ Soccer</option>
+              <option value="volleyball">🏐 Volleyball</option>
+            </select>
+          </div>
+          <textarea class="admin-json-editor" id="adminBracketEditor" spellcheck="false"></textarea>
+          <div class="admin-actions-row">
+            <button class="btn btn--outline btn--sm" id="adminBracketReset">Restaurar</button>
+            <button class="btn btn--primary btn--sm" id="adminBracketApply">Aplicar Cambios</button>
+          </div>
+          <p class="admin-feedback" id="adminBracketFeedback"></p>
+        </div>
+
+        <!-- Tab: Winners -->
+        <div class="admin-tab-content" id="adminTab-winners">
+          <div class="admin-section-header">
+            <h2>Gestionar Ganadores</h2>
+            <button class="btn btn--primary btn--sm" id="addWinnerBtn">+ Nuevo Ganador</button>
+          </div>
+          <div class="admin-winners-grid" id="adminWinnersGrid">
+            <!-- JS -->
+          </div>
+        </div>
+
+        <!-- Tab: Registrations -->
+        <div class="admin-tab-content" id="adminTab-registrations">
+          <div class="admin-section-header">
+            <h2>Resumen de Registros</h2>
+          </div>
+          <div class="admin-table-wrap">
+            <table class="admin-table" id="adminRegistrationsTable">
+              <thead>
+                <tr>
+                  <th>Actividad</th>
+                  <th>Día</th>
+                  <th>Inscritos</th>
+                  <th>Máximo</th>
+                  <th>Disponibles</th>
+                  <th>Estado</th>
+                </tr>
+              </thead>
+              <tbody id="adminRegistrationsBody">
+                <!-- JS -->
+              </tbody>
+            </table>
+          </div>
+        </div>
+
+        <!-- Tab: Logs -->
+        <div class="admin-tab-content" id="adminTab-logs">
+          <div class="admin-section-header">
+            <h2>Registro de Interacciones (IP)</h2>
+            <button class="btn btn--outline btn--sm" id="refreshLogsBtn">🔄 Refrescar</button>
+          </div>
+          <div class="admin-table-wrap">
+            <table class="admin-table" id="adminLogsTable">
+              <thead>
+                <tr>
+                  <th>Fecha/Hora</th>
+                  <th>IP</th>
+                  <th>Evento</th>
+                  <th>Detalles</th>
+                </tr>
+              </thead>
+              <tbody id="adminLogsBody">
+                <!-- JS -->
+              </tbody>
+            </table>
+          </div>
+        </div>
+      </div>
+
+      <!-- Activity Edit Modal -->
+      <div class="admin-modal-overlay" id="activityEditModal">
+        <div class="admin-modal">
+          <div class="admin-modal__header">
+            <h3 id="activityModalTitle">Editar Actividad</h3>
+            <button class="admin-modal__close" data-close-modal="activityEditModal">&times;</button>
+          </div>
+          <form id="activityEditForm">
+            <input type="hidden" id="editActivityId" />
+            <div class="admin-form-row">
+              <div class="admin-form-group">
+                <label>Emoji</label>
+                <input type="text" id="editActivityEmoji" placeholder="🏀" />
+              </div>
+              <div class="admin-form-group">
+                <label>Nombre</label>
+                <input type="text" id="editActivityName" required />
+              </div>
+            </div>
+            <div class="admin-form-row">
+              <div class="admin-form-group">
+                <label>Día</label>
+                <select id="editActivityDay">
+                  <option>Lunes</option><option>Martes</option><option>Miércoles</option><option>Jueves</option><option>Viernes</option>
+                </select>
+              </div>
+              <div class="admin-form-group">
+                <label>Categoría</label>
+                <select id="editActivityCategory">
+                  <option value="sports">Sports</option><option value="academic">Academic</option><option value="arts">Arts</option><option value="fun">Fun</option>
+                </select>
+              </div>
+            </div>
+            <div class="admin-form-group">
+              <label>Descripción</label>
+              <textarea id="editActivityDesc" rows="2"></textarea>
+            </div>
+            <div class="admin-form-row">
+              <div class="admin-form-group">
+                <label>Máx. Participantes</label>
+                <input type="number" id="editActivityMax" min="1" />
+              </div>
+              <div class="admin-form-group">
+                <label>Horario</label>
+                <input type="text" id="editActivityTime" placeholder="Después de examen" />
+              </div>
+            </div>
+            <div class="admin-form-group">
+              <label>Reglas (una por línea)</label>
+              <textarea id="editActivityRules" rows="4" placeholder="Cada línea es una regla"></textarea>
+            </div>
+            <div class="admin-actions-row">
+              <button type="button" class="btn btn--outline btn--sm" data-close-modal="activityEditModal">Cancelar</button>
+              <button type="submit" class="btn btn--primary btn--sm">Guardar</button>
+            </div>
+          </form>
+        </div>
+      </div>
+
+      <!-- Winner Edit Modal -->
+      <div class="admin-modal-overlay" id="winnerEditModal">
+        <div class="admin-modal">
+          <div class="admin-modal__header">
+            <h3 id="winnerModalTitle">Editar Ganador</h3>
+            <button class="admin-modal__close" data-close-modal="winnerEditModal">&times;</button>
+          </div>
+          <form id="winnerEditForm">
+            <input type="hidden" id="editWinnerIndex" />
+            <div class="admin-form-row">
+              <div class="admin-form-group">
+                <label>Emoji</label>
+                <input type="text" id="editWinnerEmoji" placeholder="🏀" />
+              </div>
+              <div class="admin-form-group">
+                <label>Actividad</label>
+                <input type="text" id="editWinnerActivity" required />
+              </div>
+            </div>
+            <div class="admin-form-row">
+              <div class="admin-form-group">
+                <label>Nombre del Ganador</label>
+                <input type="text" id="editWinnerName" required />
+              </div>
+              <div class="admin-form-group">
+                <label>Equipo / Clase</label>
+                <input type="text" id="editWinnerTeam" />
+              </div>
+            </div>
+            <div class="admin-form-row">
+              <div class="admin-form-group">
+                <label>Lugar (1, 2, 3)</label>
+                <select id="editWinnerPlace">
+                  <option value="1">🥇 1er Lugar</option>
+                  <option value="2">🥈 2do Lugar</option>
+                  <option value="3">🥉 3er Lugar</option>
+                </select>
+              </div>
+              <div class="admin-form-group">
+                <label>Categoría</label>
+                <select id="editWinnerCategory">
+                  <option value="sports">Sports</option><option value="academic">Academic</option><option value="arts">Arts</option><option value="fun">Fun</option>
+                </select>
+              </div>
+            </div>
+            <div class="admin-form-group">
+              <label>Foto del Ganador</label>
+              <input type="file" id="editWinnerPhoto" accept="image/*" />
+              <div class="admin-photo-preview" id="winnerPhotoPreview"></div>
+            </div>
+            <div class="admin-actions-row">
+              <button type="button" class="btn btn--outline btn--sm" data-close-modal="winnerEditModal">Cancelar</button>
+              <button type="submit" class="btn btn--primary btn--sm">Guardar</button>
+            </div>
+          </form>
+        </div>
+      </div>
+    </section>
+  </main>
+
+  <!-- ===== RULES MODAL ===== -->
+  <div class="modal-overlay" id="rulesModal">
+    <div class="modal">
+      <button class="modal__close" aria-label="Close">&times;</button>
+      <div class="modal__header">
+        <span class="modal__emoji" id="rulesModal-emoji"></span>
+        <div>
+          <h2 class="modal__title" id="rulesModal-title"></h2>
+          <span class="activity-card__status" id="rulesModal-status"></span>
+        </div>
+      </div>
+      <div class="modal__body">
+        <h3 class="modal__section-title">📋 Rules</h3>
+        <ol class="rules-list" id="rulesModal-list"></ol>
+        <div class="modal__capacity-info">
+          <span class="modal__capacity-label">Participants:</span>
+          <span class="modal__capacity-value" id="rulesModal-capacity"></span>
+        </div>
+      </div>
+    </div>
+  </div>
+
+  <!-- ===== FOOTER ===== -->
+  <footer class="footer">
+    <p>&copy; 2026 Student's Day — Made by Teacher Hugo .</p>
+    <a href="#" class="footer-admin-link nav-link" data-page="admin" title="Admin">🔒</a>
+  </footer>
+
+  <script src="app.js"></script>
+</body>
+
+</html>
