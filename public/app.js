@@ -1320,6 +1320,23 @@ document.addEventListener("click", (e) => {
 });
 
 // ============ ACTIVITIES MANAGEMENT ============
+async function saveActivitiesToBackend() {
+  try {
+    const res = await fetch('/api/activities', {
+      method: 'POST',
+      headers: {
+        'Content-Type': 'application/json',
+        'Authorization': `Bearer ${ADMIN_PASSWORD}`
+      },
+      body: JSON.stringify({ activities: ACTIVITIES })
+    });
+    if (!res.ok) throw new Error("Failed to save activities");
+  } catch (err) {
+    console.error(err);
+    alert("Error al guardar actividades en la base de datos.");
+  }
+}
+
 function renderAdminActivities() {
   const tbody = $("#adminActivitiesBody");
   tbody.innerHTML = ACTIVITIES.map(a => `
@@ -1370,7 +1387,7 @@ function openAddActivity() {
 
 $("#addActivityBtn").addEventListener("click", openAddActivity);
 
-$("#activityEditForm").addEventListener("submit", (e) => {
+$("#activityEditForm").addEventListener("submit", async (e) => {
   e.preventDefault();
   const id = $("#editActivityId").value;
   const data = {
@@ -1402,18 +1419,20 @@ $("#activityEditForm").addEventListener("submit", (e) => {
 
   // Persist & refresh
   saveToLocalStorage();
+  await saveActivitiesToBackend();
   renderAdminActivities();
   renderActivities($$(".filter-btn.active")[0]?.dataset.filter || "all");
   renderRegisterChecklist();
   $("#activityEditModal").classList.remove("modal--open");
 });
 
-function deleteActivity(id) {
+async function deleteActivity(id) {
   if (!confirm("¿Eliminar esta actividad?")) return;
   const idx = ACTIVITIES.findIndex(a => a.id === id);
   if (idx !== -1) {
     ACTIVITIES.splice(idx, 1);
     saveToLocalStorage();
+    await saveActivitiesToBackend();
     renderAdminActivities();
     renderActivities($$(".filter-btn.active")[0]?.dataset.filter || "all");
     renderRegisterChecklist();

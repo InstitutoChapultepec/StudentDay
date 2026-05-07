@@ -16,16 +16,42 @@ const ACTIVITIES_BASE = [
   { id: 11, name: "Beyond / Fiesta", emoji: "🎉", category: "fun", day: "Viernes", desc: "¡El gran cierre de la Semana del Estudiante! Música, comida y diversión.", time: "Todo el día", maxParticipants: 107, rules: ["Entrada libre para todos los estudiantes.", "Habrá comida, música y actividades sorpresa.", "¡Disfruta el último día!"] }
 ];
 
+const ADMIN_PASSWORD = "admin678";
+
 export default async function handler(req, res) {
-  if (req.method !== 'GET') {
+  if (req.method !== 'GET' && req.method !== 'POST') {
     return res.status(405).json({ error: 'Method Not Allowed' });
   }
 
   try {
     const redis = createRedisClient();
     if (!redis) {
-      const fallbackActivities = ACTIVITIES_BASE.map(a => ({ ...a, filledSpots: 0 }));
-      return res.status(200).json({ activities: fallbackActivities, fallback: true, redisDisabled: true });
+      if (req.method === 'GET') {
+        const fallbackActivities = ACTIVITIES_BASE.map(a => ({ ...a, filledSpots: 0 }));
+        return res.status(200).json({ activities: fallbackActivities, fallback: true, redisDisabled: true });
+      }
+      return res.status(500).json({ error: 'Redis disabled' });
+    }
+
+    if (req.method === 'POST') {
+      const authHeader = req.headers['authorization'];
+      if (authHeader !== `Bearer ${ADMIN_PASSWORD}`) {
+        return res.status(401).json({ error: 'Unauthorized' });
+      }
+
+      const { activities } = req.body;
+      if (!activities || !Array.isArray(activities)) {
+        return res.status(400).json({ error: 'Invalid activities payload' });
+      }
+
+      // We strip out "filledSpots" before saving so we don't save computed state
+      const configToSave = activities.map(a => {
+        const { filledSpots, ...rest } = a;
+        return rest;
+      });
+
+      await redis.set("activities_config", configToSave);
+      return res.status(200).json({ success: true });
     }
 
     // 1. Fetch dynamic config if exists (for admin overrides), fallback to base
