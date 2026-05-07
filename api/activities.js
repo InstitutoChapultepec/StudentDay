@@ -1,6 +1,4 @@
-import { Redis } from '@upstash/redis';
-
-const redis = Redis.fromEnv();
+import { createRedisClient } from './_redis.js';
 
 // Base definitions
 const ACTIVITIES_BASE = [
@@ -23,6 +21,12 @@ export default async function handler(req, res) {
   }
 
   try {
+    const redis = createRedisClient();
+    if (!redis) {
+      const fallbackActivities = ACTIVITIES_BASE.map(a => ({ ...a, filledSpots: 0 }));
+      return res.status(200).json({ activities: fallbackActivities, fallback: true, redisDisabled: true });
+    }
+
     // 1. Fetch dynamic config if exists (for admin overrides), fallback to base
     const customConfig = await redis.get("activities_config");
     let activities = customConfig || ACTIVITIES_BASE;

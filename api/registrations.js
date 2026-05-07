@@ -1,6 +1,4 @@
-import { Redis } from '@upstash/redis';
-
-const redis = Redis.fromEnv();
+import { createRedisClient } from './_redis.js';
 const ADMIN_PASSWORD = "admin678";
 
 export default async function handler(req, res) {
@@ -12,6 +10,11 @@ export default async function handler(req, res) {
   }
 
   try {
+    const redis = createRedisClient();
+    if (!redis) {
+      return res.status(200).json({ registrations: [], redisDisabled: true });
+    }
+
     const codes = await redis.lrange('registrations', 0, -1);
     if (!codes || codes.length === 0) {
       return res.status(200).json({ registrations: [] });

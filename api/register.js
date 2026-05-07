@@ -1,7 +1,5 @@
-import { Redis } from '@upstash/redis';
 import studentsData from '../students.json';
-
-const redis = Redis.fromEnv();
+import { createRedisClient } from './_redis.js';
 
 // We need the max caps to enforce hard limits
 const MAX_CAPS = {
@@ -12,6 +10,11 @@ export default async function handler(req, res) {
   if (req.method !== 'POST') return res.status(405).json({ error: 'Method Not Allowed' });
 
   try {
+    const redis = createRedisClient();
+    if (!redis) {
+      return res.status(503).json({ error: 'Configuración de Redis faltante en el servidor.' });
+    }
+
     let { accessCode, activityIds } = req.body;
     
     if (!accessCode || !Array.isArray(activityIds)) {
