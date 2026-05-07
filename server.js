@@ -73,9 +73,22 @@ app.get('/api/verify', (req, res) => {
 
 // --- API: GET /api/activities ---
 app.get('/api/activities', (req, res) => {
-  const activities = ACTIVITIES_BASE.map(a => ({
+  // Compute from registrations list to avoid any drift.
+  const codes = store.registrations || [];
+  const uniqueCodes = [...new Set(codes)];
+
+  const counts = {};
+  uniqueCodes.forEach((code) => {
+    const r = store.students[code];
+    const ids = parseActivityIds(r && r.activityIds);
+    ids.forEach((id) => {
+      counts[id] = (counts[id] || 0) + 1;
+    });
+  });
+
+  const activities = ACTIVITIES_BASE.map((a) => ({
     ...a,
-    filledSpots: store.activityCounts[a.id] || 0
+    filledSpots: counts[a.id] || 0
   }));
   return res.status(200).json({ activities });
 });

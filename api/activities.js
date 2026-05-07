@@ -1,4 +1,5 @@
 import { createRedisClient } from './_redis.js';
+import { parseActivityIds } from './_activityIds.js';
 
 // Base definitions
 const ACTIVITIES_BASE = [
@@ -31,15 +32,29 @@ export default async function handler(req, res) {
     const customConfig = await redis.get("activities_config");
     let activities = customConfig || ACTIVITIES_BASE;
 
-    // 2. Fetch live counts using pipeline
-    const p = redis.pipeline();
-    activities.forEach(a => p.get(`activity:${a.id}:count`));
-    const counts = await p.exec();
+    // 2. Compute filled spots from the authoritative registrations list.
+    // This avoids any drift between "activity:*:count" counters and actual student records.
+    const codes = await redis.lrange('registrations', 0, -1);
+    const uniqueCodes = [...new Set(codes || [])];
 
-    // 3. Merge counts
-    activities = activities.map((a, i) => ({
+    const p = redis.pipeline();
+    uniqueCodes.forEach(code => p.hgetall(`student:${code}`));
+    const results = await p.exec();
+
+    const counts = {};
+    results
+      .filter(Boolean)
+      .forEach((r) => {
+        const ids = parseActivityIds(r.activityIds);
+        ids.forEach((id) => {
+          counts[id] = (counts[id] || 0) + 1;
+        });
+      });
+
+    // 3. Merge counts into activity objects
+    activities = activities.map((a) => ({
       ...a,
-      filledSpots: parseInt(counts[i] || 0)
+      filledSpots: counts[a.id] || 0
     }));
 
     return res.status(200).json({ activities });
