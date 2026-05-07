@@ -490,6 +490,10 @@ document.addEventListener("keydown", (e) => {
 });
 
 /* ===== REGISTER FORM ===== */
+let currentStudent = null;
+let currentAccessCode = "";
+let registrationSelection = new Set();
+
 function renderRegisterChecklist() {
   const container = $("#regChecklist");
   if (!container) return;
@@ -552,10 +556,6 @@ if (regChecklist) {
 }
 
 // Removed the spots indicator logic since the checklist handles it natively
-
-let currentStudent = null;
-let currentAccessCode = "";
-let registrationSelection = new Set();
 
 // STEP 1: Verify Access Code
 $("#verifyForm").addEventListener("submit", async (e) => {
