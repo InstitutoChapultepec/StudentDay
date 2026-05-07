@@ -245,11 +245,6 @@ const SCHEDULE_DATA = {
             location: "—", time: "Mañana",
             description: "Tiempo libre para disfrutar."
           },
-          {
-            emoji: "🏃", name: "Pista T.", organizer: "Coordinación", type: "deportes",
-            location: "Dique", time: "Tarde",
-            description: "Actividad en el dique — ¡no faltes!"
-          },
         ]
       },
     ]
