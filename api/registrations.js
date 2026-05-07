@@ -1,4 +1,5 @@
 import { createRedisClient } from './_redis.js';
+import { parseActivityIds } from './_activityIds.js';
 const ADMIN_PASSWORD = "admin678";
 
 export default async function handler(req, res) {
@@ -29,7 +30,7 @@ export default async function handler(req, res) {
     // Map and parse activityIds
     const registrations = results.filter(Boolean).map(r => ({
       ...r,
-      activityIds: r.activityIds ? JSON.parse(r.activityIds) : []
+      activityIds: parseActivityIds(r.activityIds)
     }));
 
     return res.status(200).json({ registrations });

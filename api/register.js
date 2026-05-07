@@ -41,23 +41,12 @@ export default async function handler(req, res) {
 
     // 3. Check for previous registration (to overwrite)
     const previousReg = await redis.hgetall(`student:${accessCode}`);
-    // #region agent log
-    const _debug = {
-      previousRegType: previousReg === null ? 'null' : typeof previousReg,
-      previousRegKeys: previousReg && typeof previousReg === 'object' ? Object.keys(previousReg) : null,
-      previousRegActivityIdsRaw: previousReg ? previousReg.activityIds : null,
-    };
-    // #endregion
     const isUpdate = !!(previousReg && Object.keys(previousReg).length > 0);
     let oldActivities = [];
     
     if (isUpdate && previousReg.activityIds != null) {
       oldActivities = parseActivityIds(previousReg.activityIds);
     }
-    // #region agent log
-    _debug.isUpdate = isUpdate;
-    _debug.oldActivities = oldActivities;
-    // #endregion
 
     // 4. Try to book the new activities atomically
     const registered = [];
@@ -104,15 +93,7 @@ export default async function handler(req, res) {
     p.hset(`student:${accessCode}`, newReg);
     p.lrem('registrations', 0, accessCode);
     p.rpush('registrations', accessCode);
-    const pipelineResults = await p.exec();
-    // #region agent log
-    _debug.pipelineResults = pipelineResults;
-    const finalListLen = await redis.llen('registrations');
-    _debug.registrationsListLen = finalListLen;
-    const sampleCodes = await redis.lrange('registrations', 0, -1);
-    _debug.registrationsListContainsThisCodeCount = sampleCodes.filter(c => c === accessCode).length;
-    _debug.registrationsListSize = sampleCodes.length;
-    // #endregion
+    await p.exec();
 
     // Log the event
     await redis.lpush('site_logs', JSON.stringify({
@@ -129,7 +110,6 @@ export default async function handler(req, res) {
       registered,
       rejected,
       isUpdate,
-      _debug
     });
 
   } catch (error) {

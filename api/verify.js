@@ -17,28 +17,14 @@ export default async function handler(req, res) {
 
   // Return safe subset (no sensitive data other than name/grade)
   let previousActivityIds = [];
-  // #region agent log
-  const _debug = { redisClientExists: false, hgetallType: null, hgetallKeys: null, hgetallActivityIdsRaw: null, parseError: null };
-  // #endregion
   const redis = createRedisClient();
-  // #region agent log
-  _debug.redisClientExists = !!redis;
-  // #endregion
   if (redis) {
     try {
       const previousReg = await redis.hgetall(`student:${accessCode}`);
-      // #region agent log
-      _debug.hgetallType = previousReg === null ? 'null' : typeof previousReg;
-      _debug.hgetallKeys = previousReg && typeof previousReg === 'object' ? Object.keys(previousReg) : null;
-      _debug.hgetallActivityIdsRaw = previousReg ? previousReg.activityIds : null;
-      // #endregion
       if (previousReg && previousReg.activityIds != null) {
         previousActivityIds = parseActivityIds(previousReg.activityIds);
       }
     } catch (error) {
-      // #region agent log
-      _debug.parseError = String(error && error.message);
-      // #endregion
       previousActivityIds = [];
     }
   }
@@ -51,6 +37,5 @@ export default async function handler(req, res) {
       group: student.group
     },
     previousActivityIds,
-    _debug
   });
 }

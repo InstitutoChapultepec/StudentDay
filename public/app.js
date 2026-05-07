@@ -505,8 +505,9 @@ function renderRegisterChecklist() {
     const dayActivities = ACTIVITIES.filter(a => a.day === day);
     if (dayActivities.length === 0) return;
 
-    const isRadio = ["Lunes", "Martes", "Miércoles"].includes(day);
-    const inputType = isRadio ? "radio" : "checkbox";
+    const isSingleOptionalDay = ["Lunes", "Martes", "Miércoles"].includes(day);
+    // Radios can't be toggled off; we use checkboxes + enforce max 1 per day.
+    const inputType = isSingleOptionalDay ? "checkbox" : "checkbox";
     const inputName = `activity_${day}`;
 
     let itemsHtml = dayActivities.map(a => {
@@ -528,7 +529,7 @@ function renderRegisterChecklist() {
 
     html += `
       <div class="checklist-group">
-        <div class="checklist-group__header">${day} ${isRadio ? '<span class="optional">(Elige 1 opcional)</span>' : '<span class="optional">(Opcional)</span>'}</div>
+        <div class="checklist-group__header">${day} ${isSingleOptionalDay ? '<span class="optional">(Elige 1 opcional)</span>' : '<span class="optional">(Opcional)</span>'}</div>
         <div class="checklist-group__items">
           ${itemsHtml}
         </div>
@@ -537,11 +538,6 @@ function renderRegisterChecklist() {
   });
 
   container.innerHTML = html;
-
-  // #region agent log
-  const checkedAfterRender = Array.from(container.querySelectorAll('input:checked')).map(i => parseInt(i.value));
-  fetch('http://127.0.0.1:7365/ingest/e90dc103-e76c-40cd-ae36-c49edc1326f6',{method:'POST',headers:{'Content-Type':'application/json','X-Debug-Session-Id':'c7d495'},body:JSON.stringify({sessionId:'c7d495',hypothesisId:'H3',location:'app.js:renderRegisterChecklist',message:'Checklist rendered',data:{registrationSelection:Array.from(registrationSelection),checkedInDOMAfterRender:checkedAfterRender},timestamp:Date.now()})}).catch(()=>{});
-  // #endregion
 }
 renderRegisterChecklist();
 
@@ -555,7 +551,26 @@ function syncRegistrationSelectionFromDOM() {
 
 const regChecklist = $("#regChecklist");
 if (regChecklist) {
-  regChecklist.addEventListener("change", () => {
+  const optionalDays = ["Lunes", "Martes", "Miércoles"];
+  regChecklist.addEventListener("change", (e) => {
+    const target = e.target;
+    // Enforce "max 1 per optional day" by unchecking the rest in the same day group.
+    if (
+      target &&
+      target.matches &&
+      target.matches('input[type="checkbox"][name^="activity_"]')
+    ) {
+      const dayKey = target.name.replace("activity_", "");
+      if (optionalDays.includes(dayKey) && target.checked) {
+        const groupInputs = regChecklist.querySelectorAll(
+          `input[type="checkbox"][name="${target.name}"]`
+        );
+        groupInputs.forEach((i) => {
+          if (i !== target) i.checked = false;
+        });
+      }
+    }
+
     syncRegistrationSelectionFromDOM();
   });
 }
@@ -582,9 +597,7 @@ $("#verifyForm").addEventListener("submit", async (e) => {
       currentAccessCode = code;
       registrationSelection = new Set(Array.isArray(data.previousActivityIds) ? data.previousActivityIds : []);
 
-      // #region agent log
-      fetch('http://127.0.0.1:7365/ingest/e90dc103-e76c-40cd-ae36-c49edc1326f6',{method:'POST',headers:{'Content-Type':'application/json','X-Debug-Session-Id':'c7d495'},body:JSON.stringify({sessionId:'c7d495',hypothesisId:'H1+H2+H5',location:'app.js:verifyForm.success',message:'Verify API response received',data:{previousActivityIds:data.previousActivityIds,api_debug:data._debug,registrationSelectionAfterSet:Array.from(registrationSelection)},timestamp:Date.now()})}).catch(()=>{});
-      // #endregion
+      
       
       // Update UI
       $("#displayStudentName").textContent = currentStudent.name;
@@ -647,9 +660,7 @@ $("#registerForm").addEventListener("submit", async (e) => {
     });
     const data = await res.json();
 
-    // #region agent log
-    fetch('http://127.0.0.1:7365/ingest/e90dc103-e76c-40cd-ae36-c49edc1326f6',{method:'POST',headers:{'Content-Type':'application/json','X-Debug-Session-Id':'c7d495'},body:JSON.stringify({sessionId:'c7d495',hypothesisId:'H2+H4',location:'app.js:registerForm.response',message:'Register API response received',data:{submittedAccessCode:currentAccessCode,submittedActivityIds:activityIds,registered:data.registered,rejected:data.rejected,isUpdate:data.isUpdate,api_debug:data._debug},timestamp:Date.now()})}).catch(()=>{});
-    // #endregion
+    // (instrumentation removed)
 
     if (res.ok && data.success) {
       // Build confirmation
@@ -1633,6 +1644,35 @@ function renderAdminRegistrations() {
     `;
   }).join("");
 }
+
+// ============ RESET REGISTRATIONS ============
+$("#adminResetRegistrations")?.addEventListener("click", async () => {
+  if (!confirm("¿Restaurar TODOS los registros de estudiantes y reiniciar contadores de inscritos?")) return;
+  try {
+    const res = await fetch('/api/reset-registrations', {
+      method: 'POST',
+      headers: {
+        'Content-Type': 'application/json',
+        'Authorization': `Bearer ${ADMIN_PASSWORD}`
+      },
+      body: JSON.stringify({})
+    });
+
+    if (!res.ok) throw new Error("Reset failed");
+
+    // Refresh UI after reset.
+    await fetchActivities();
+    renderAdminRegistrations();
+    if ($("#page-admin")?.classList.contains("page--active")) {
+      fetchAdminRegistrations();
+    }
+
+    alert("✅ Registros restaurados correctamente.");
+  } catch (err) {
+    console.error("Reset registrations error:", err);
+    alert("Error al restaurar registros. Intenta de nuevo.");
+  }
+});
 
 // ============ DOWNLOAD ACTIVITY LIST ============
 async function downloadActivityList(activityId) {

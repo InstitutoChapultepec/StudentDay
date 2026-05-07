@@ -197,10 +197,37 @@ app.get('/api/registrations', (req, res) => {
   const registrations = store.registrations.map(code => {
     const r = store.students[code];
     if (!r) return null;
-    return { ...r, activityIds: r.activityIds ? JSON.parse(r.activityIds) : [] };
+    return { ...r, activityIds: parseActivityIds(r.activityIds) };
   }).filter(Boolean);
 
   return res.status(200).json({ registrations });
+});
+
+// --- API: POST /api/reset-registrations (admin) ---
+app.post('/api/reset-registrations', (req, res) => {
+  const authHeader = req.headers['authorization'];
+  if (authHeader !== `Bearer ${ADMIN_PASSWORD}`) {
+    return res.status(401).json({ error: 'Unauthorized' });
+  }
+
+  try {
+    const activityIds = [1, 2, 3, 4, 5, 6, 7, 8, 9, 10, 11];
+
+    // Clear student registrations
+    (store.registrations || []).forEach((code) => {
+      delete store.students[code];
+    });
+    store.registrations = [];
+
+    // Reset activity counters
+    activityIds.forEach((id) => {
+      store.activityCounts[id] = 0;
+    });
+
+    return res.status(200).json({ success: true });
+  } catch (e) {
+    return res.status(500).json({ error: 'Internal Server Error' });
+  }
 });
 
 // --- SPA fallback ---
