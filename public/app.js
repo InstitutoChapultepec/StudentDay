@@ -537,6 +537,11 @@ function renderRegisterChecklist() {
   });
 
   container.innerHTML = html;
+
+  // #region agent log
+  const checkedAfterRender = Array.from(container.querySelectorAll('input:checked')).map(i => parseInt(i.value));
+  fetch('http://127.0.0.1:7365/ingest/e90dc103-e76c-40cd-ae36-c49edc1326f6',{method:'POST',headers:{'Content-Type':'application/json','X-Debug-Session-Id':'c7d495'},body:JSON.stringify({sessionId:'c7d495',hypothesisId:'H3',location:'app.js:renderRegisterChecklist',message:'Checklist rendered',data:{registrationSelection:Array.from(registrationSelection),checkedInDOMAfterRender:checkedAfterRender},timestamp:Date.now()})}).catch(()=>{});
+  // #endregion
 }
 renderRegisterChecklist();
 
@@ -576,6 +581,10 @@ $("#verifyForm").addEventListener("submit", async (e) => {
       currentStudent = data.student;
       currentAccessCode = code;
       registrationSelection = new Set(Array.isArray(data.previousActivityIds) ? data.previousActivityIds : []);
+
+      // #region agent log
+      fetch('http://127.0.0.1:7365/ingest/e90dc103-e76c-40cd-ae36-c49edc1326f6',{method:'POST',headers:{'Content-Type':'application/json','X-Debug-Session-Id':'c7d495'},body:JSON.stringify({sessionId:'c7d495',hypothesisId:'H1+H2+H5',location:'app.js:verifyForm.success',message:'Verify API response received',data:{previousActivityIds:data.previousActivityIds,api_debug:data._debug,registrationSelectionAfterSet:Array.from(registrationSelection)},timestamp:Date.now()})}).catch(()=>{});
+      // #endregion
       
       // Update UI
       $("#displayStudentName").textContent = currentStudent.name;
@@ -637,6 +646,10 @@ $("#registerForm").addEventListener("submit", async (e) => {
       })
     });
     const data = await res.json();
+
+    // #region agent log
+    fetch('http://127.0.0.1:7365/ingest/e90dc103-e76c-40cd-ae36-c49edc1326f6',{method:'POST',headers:{'Content-Type':'application/json','X-Debug-Session-Id':'c7d495'},body:JSON.stringify({sessionId:'c7d495',hypothesisId:'H2+H4',location:'app.js:registerForm.response',message:'Register API response received',data:{submittedAccessCode:currentAccessCode,submittedActivityIds:activityIds,registered:data.registered,rejected:data.rejected,isUpdate:data.isUpdate,api_debug:data._debug},timestamp:Date.now()})}).catch(()=>{});
+    // #endregion
 
     if (res.ok && data.success) {
       // Build confirmation
