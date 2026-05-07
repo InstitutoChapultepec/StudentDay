@@ -1,5 +1,6 @@
 import studentsData from '../students.json';
 import { createRedisClient } from './_redis.js';
+import { parseActivityIds } from './_activityIds.js';
 
 // We need the max caps to enforce hard limits
 const MAX_CAPS = {
@@ -50,10 +51,8 @@ export default async function handler(req, res) {
     const isUpdate = !!(previousReg && Object.keys(previousReg).length > 0);
     let oldActivities = [];
     
-    if (isUpdate && previousReg.activityIds) {
-      try {
-        oldActivities = JSON.parse(previousReg.activityIds);
-      } catch(e) {}
+    if (isUpdate && previousReg.activityIds != null) {
+      oldActivities = parseActivityIds(previousReg.activityIds);
     }
     // #region agent log
     _debug.isUpdate = isUpdate;

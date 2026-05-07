@@ -1,5 +1,6 @@
 import studentsData from '../students.json';
 import { createRedisClient } from './_redis.js';
+import { parseActivityIds } from './_activityIds.js';
 
 export default async function handler(req, res) {
   if (req.method !== 'GET') return res.status(405).json({ error: 'Method Not Allowed' });
@@ -31,8 +32,8 @@ export default async function handler(req, res) {
       _debug.hgetallKeys = previousReg && typeof previousReg === 'object' ? Object.keys(previousReg) : null;
       _debug.hgetallActivityIdsRaw = previousReg ? previousReg.activityIds : null;
       // #endregion
-      if (previousReg && previousReg.activityIds) {
-        previousActivityIds = JSON.parse(previousReg.activityIds);
+      if (previousReg && previousReg.activityIds != null) {
+        previousActivityIds = parseActivityIds(previousReg.activityIds);
       }
     } catch (error) {
       // #region agent log

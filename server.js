@@ -2,6 +2,24 @@ const express = require('express');
 const path = require('path');
 const studentsData = require('./students.json');
 
+function parseActivityIds(raw) {
+  if (raw == null || raw === '') return [];
+  if (Array.isArray(raw)) {
+    return raw.map((id) => Number(id)).filter((n) => Number.isInteger(n));
+  }
+  if (typeof raw === 'string') {
+    try {
+      const parsed = JSON.parse(raw);
+      return Array.isArray(parsed)
+        ? parsed.map((id) => Number(id)).filter((n) => Number.isInteger(n))
+        : [];
+    } catch {
+      return [];
+    }
+  }
+  return [];
+}
+
 const app = express();
 const PORT = process.env.PORT || 3000;
 
@@ -45,9 +63,11 @@ app.get('/api/verify', (req, res) => {
     return res.status(404).json({ error: 'Código inválido o no encontrado.' });
   }
 
+  const previous = store.students[accessCode];
   return res.status(200).json({
     success: true,
-    student: { name: student.name, grade: student.grade, group: student.group }
+    student: { name: student.name, grade: student.grade, group: student.group },
+    previousActivityIds: previous ? parseActivityIds(previous.activityIds) : []
   });
 });
 
