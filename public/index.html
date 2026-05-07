@@ -1,12 +1,12 @@
 <!DOCTYPE html>
-<html lang="en">
+<html lang="es">
 
 <head>
   <meta charset="UTF-8" />
   <meta name="viewport" content="width=device-width, initial-scale=1.0" />
-  <title>Student's Day — High School Event</title>
+  <title>Día del Estudiante — Instituto Chapultepec Norte</title>
   <meta name="description"
-    content="Student's Day — Join us for exciting activities, competitions, and fun at our high school event!" />
+    content="Día del Estudiante — ¡Únete a las actividades, competencias y diversión en nuestro evento escolar!" />
   <link rel="preconnect" href="https://fonts.googleapis.com" />
   <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin />
   <link href="https://fonts.googleapis.com/css2?family=Outfit:wght@300;400;500;600;700;800&display=swap"
@@ -17,21 +17,18 @@
 <body>
   <!-- ===== TOP NAV ===== -->
   <header class="navbar" id="navbar">
-    <a href="#" class="navbar__logo" data-page="home">
-      <img src="img/logo.png" alt="Instituto Chapultepec Norte" class="logo-image" />
-    </a>
 
-    <button class="navbar__hamburger" id="hamburger" aria-label="Toggle menu">
+    <button class="navbar__hamburger" id="hamburger" aria-label="Abrir menú">
       <span></span><span></span><span></span>
     </button>
 
     <nav class="navbar__links" id="navLinks">
-      <a href="#" class="nav-link active" data-page="home">Home</a>
-      <a href="#" class="nav-link" data-page="activities">Activities</a>
+      <a href="#" class="nav-link active" data-page="home">Inicio</a>
+      <a href="#" class="nav-link" data-page="activities">Actividades</a>
       <a href="#" class="nav-link" data-page="schedule">Horario</a>
-      <a href="#" class="nav-link" data-page="register">Register</a>
-      <a href="#" class="nav-link" data-page="brackets">Brackets</a>
-      <a href="#" class="nav-link" data-page="winners">Winners</a>
+      <a href="#" class="nav-link" data-page="register">Registro</a>
+      <a href="#" class="nav-link" data-page="brackets">Resultados</a>
+      <a href="#" class="nav-link" data-page="winners">Ganadores</a>
     </nav>
   </header>
 
@@ -41,55 +38,55 @@
       <div class="hero">
         <div class="hero__particles" id="particles"></div>
         <div class="hero__content">
-          <span class="hero__badge">🎉 2026 Edition</span>
-          <h1 class="hero__title">Student's<br /><span class="highlight">Day</span></h1>
+          <img src="img/logo.png" alt="Instituto Chapultepec Norte" class="hero__logo" />
+          <span class="hero__badge">🎉 Edición 2026</span>
+          <h1 class="hero__title">Día del<br /><span class="highlight">Estudiante</span></h1>
           <p class="hero__subtitle">
-            A full day of competitions, creativity, and school spirit.<br />
-            Are you ready to make memories?
+            Un día lleno de competencias, creatividad y espíritu escolar.<br />
+            ¿Estás listo para crear recuerdos?
           </p>
           <div class="hero__actions">
-            <button class="btn btn--primary" data-page="register">Register Now</button>
-            <button class="btn btn--outline" data-page="activities">See Activities</button>
+            <button class="btn btn--primary" data-page="register">Regístrate</button>
+            <button class="btn btn--outline" data-page="activities">Ver Actividades</button>
           </div>
         </div>
         <div class="hero__stats">
           <div class="stat-card">
             <span class="stat-card__number" data-count="12">0</span>
-            <span class="stat-card__label">Activities</span>
+            <span class="stat-card__label">Actividades</span>
           </div>
           <div class="stat-card">
-            <span class="stat-card__number" data-count="200">0</span>
-            <span class="stat-card__label">Students</span>
+            <span class="stat-card__number" data-count="107">0</span>
+            <span class="stat-card__label">Alumnos</span>
           </div>
           <div class="stat-card">
             <span class="stat-card__number" data-count="1">0</span>
-            <span class="stat-card__label">Epic Day</span>
+            <span class="stat-card__label">Gran Día</span>
           </div>
         </div>
       </div>
 
       <!-- Countdown -->
       <div class="countdown-section">
-        <h2 class="section-title">Event Countdown</h2>
         <div class="countdown" id="countdown">
           <div class="countdown__block">
             <span class="countdown__number" id="cd-days">00</span>
-            <span class="countdown__label">Days</span>
+            <span class="countdown__label">Días</span>
           </div>
           <div class="countdown__sep">:</div>
           <div class="countdown__block">
             <span class="countdown__number" id="cd-hours">00</span>
-            <span class="countdown__label">Hours</span>
+            <span class="countdown__label">Horas</span>
           </div>
           <div class="countdown__sep">:</div>
           <div class="countdown__block">
             <span class="countdown__number" id="cd-mins">00</span>
-            <span class="countdown__label">Minutes</span>
+            <span class="countdown__label">Minutos</span>
           </div>
           <div class="countdown__sep">:</div>
           <div class="countdown__block">
             <span class="countdown__number" id="cd-secs">00</span>
-            <span class="countdown__label">Seconds</span>
+            <span class="countdown__label">Segundos</span>
           </div>
         </div>
       </div>
@@ -98,18 +95,18 @@
       <div class="info-cards">
         <div class="info-card">
           <div class="info-card__icon">📍</div>
-          <h3>Location</h3>
-          <p>Main Campus — Gymnasium &amp; Sports Fields</p>
+          <h3>Ubicación</h3>
+          <p>ICH Norte - High School</p>
         </div>
         <div class="info-card">
           <div class="info-card__icon">📅</div>
-          <h3>Date</h3>
-          <p>June 15, 2026 — 8:00 AM to 5:00 PM</p>
+          <h3>Fecha</h3>
+          <p>Lunes 18 de Mayo, 2026 — 8:00 AM</p>
         </div>
         <div class="info-card">
           <div class="info-card__icon">🏆</div>
-          <h3>Prizes</h3>
-          <p>Trophies, medals, and special certificates</p>
+          <h3>Premios</h3>
+          <p>Puntos y Reconocimientos especiales</p>
         </div>
       </div>
     </section>
@@ -117,17 +114,10 @@
     <!-- ===== PAGE: ACTIVITIES ===== -->
     <section class="page" id="page-activities">
       <div class="page-header">
-        <h1 class="page-header__title">Activities</h1>
-        <p class="page-header__sub">Choose your arena. Show your talent.</p>
+        <h1 class="page-header__title">Actividades</h1>
+        <p class="page-header__sub">Elige tu arena. Demuestra tu talento.</p>
       </div>
 
-      <div class="filter-bar" id="filterBar">
-        <button class="filter-btn active" data-filter="all">All</button>
-        <button class="filter-btn" data-filter="sports">Sports</button>
-        <button class="filter-btn" data-filter="arts">Arts</button>
-        <button class="filter-btn" data-filter="academic">Academic</button>
-        <button class="filter-btn" data-filter="fun">Fun</button>
-      </div>
 
       <div class="activities-grid" id="activitiesGrid">
         <!-- Cards injected by JS -->
@@ -137,8 +127,8 @@
     <!-- ===== PAGE: REGISTER ===== -->
     <section class="page" id="page-register">
       <div class="page-header">
-        <h1 class="page-header__title">Register</h1>
-        <p class="page-header__sub">Pick your activity and secure your spot.</p>
+        <h1 class="page-header__title">Registro</h1>
+        <p class="page-header__sub">Elige tu actividad y asegura tu lugar.</p>
       </div>
 
       <!-- Registration Form -->
@@ -179,7 +169,7 @@
             </div>
 
             <button type="submit" class="btn btn--primary btn--full" id="submitBtn">
-              <span>Submit Registration</span>
+              <span>Enviar Registro</span>
               <svg class="btn-arrow" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2">
                 <path d="M5 12h14M12 5l7 7-7 7" />
               </svg>
@@ -193,40 +183,37 @@
         <!-- Confirmation Card (hidden by default) -->
         <div class="confirm-card" id="confirmCard">
           <div class="confirm-card__icon">🎉</div>
-          <h2 class="confirm-card__title">You're In!</h2>
+          <h2 class="confirm-card__title">¡Estás dentro!</h2>
           <p class="confirm-card__msg" id="confirmMsg"></p>
           <div class="confirm-card__details" id="confirmDetails"></div>
-          <button class="btn btn--primary" id="confirmNewBtn">Register Another</button>
+          <button class="btn btn--primary" id="confirmNewBtn">Registrar Otro</button>
         </div>
       </div>
 
       <!-- Toast (kept as fallback) -->
       <div class="toast" id="toast">
         <span class="toast__icon">✅</span>
-        <span class="toast__msg">Registration submitted successfully!</span>
+        <span class="toast__msg">¡Registro enviado exitosamente!</span>
       </div>
     </section>
 
     <!-- ===== PAGE: BRACKETS ===== -->
     <section class="page" id="page-brackets">
       <div class="page-header">
-        <h1 class="page-header__title">Brackets</h1>
-        <p class="page-header__sub">Follow the tournament matchups in real time.</p>
+        <h1 class="page-header__title">Resultados</h1>
+        <p class="page-header__sub">Sigue los enfrentamientos del torneo en tiempo real.</p>
       </div>
 
       <div class="bracket-controls">
         <div class="bracket-selector">
-          <button class="bracket-tab active" data-bracket="basketball">🏀 Basketball</button>
-          <button class="bracket-tab" data-bracket="soccer">⚽ Soccer</button>
-          <button class="bracket-tab" data-bracket="volleyball">🏐 Volleyball</button>
+          <button class="bracket-tab active" data-bracket="basketball">🏀 Básquet</button>
+          <button class="bracket-tab" data-bracket="soccer">⚽ Fútbol</button>
+          <button class="bracket-tab" data-bracket="volleyball">🏐 Voleibol</button>
+          <button class="bracket-tab" data-bracket="chess">♟️ Ajedrez</button>
+          <button class="bracket-tab" data-bracket="videogames">🎮 Videojuegos</button>
+          <button class="bracket-tab" data-bracket="pingpong">🏓 Ping Pong</button>
+          <button class="bracket-tab" data-bracket="tochito">🏈 Tochito</button>
         </div>
-        <button class="admin-toggle" id="adminToggle" title="Edit bracket data">
-          <svg width="18" height="18" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2">
-            <path d="M11 4H4a2 2 0 0 0-2 2v14a2 2 0 0 0 2 2h14a2 2 0 0 0 2-2v-7" />
-            <path d="M18.5 2.5a2.121 2.121 0 0 1 3 3L12 15l-4 1 1-4 9.5-9.5z" />
-          </svg>
-          <span>Edit</span>
-        </button>
       </div>
 
       <!-- Champion banner -->
@@ -244,13 +231,13 @@
       <!-- Admin panel (hidden by default) -->
       <div class="admin-panel" id="adminPanel">
         <div class="admin-panel__header">
-          <h3>📝 Edit Bracket Data (JSON)</h3>
+          <h3>📝 Editar Datos del Bracket (JSON)</h3>
           <button class="admin-panel__close" id="adminClose">&times;</button>
         </div>
         <textarea class="admin-panel__editor" id="adminEditor" spellcheck="false"></textarea>
         <div class="admin-panel__actions">
-          <button class="btn btn--outline admin-btn" id="adminReset">Reset</button>
-          <button class="btn btn--primary admin-btn" id="adminApply">Apply Changes</button>
+          <button class="btn btn--outline admin-btn" id="adminReset">Restaurar</button>
+          <button class="btn btn--primary admin-btn" id="adminApply">Aplicar Cambios</button>
         </div>
         <div class="admin-panel__feedback" id="adminFeedback"></div>
       </div>
@@ -266,7 +253,7 @@
 
       <div class="schedule-tabs">
         <button class="schedule-tab active" data-week="week1">Semana 1 — Semana del Estudiante</button>
-        <button class="schedule-tab" data-week="week2">Semana 2 — High Week</button>
+        <button class="schedule-tab" data-week="week2">Semana 2 — Semana High</button>
       </div>
 
       <div class="schedule-days" id="scheduleDays">
@@ -281,14 +268,10 @@
 
       <div class="page-header winners-hero">
         <div class="winners-hero__trophy">🏆</div>
-        <h1 class="page-header__title">Hall of Champions</h1>
-        <p class="page-header__sub">Celebrating the legends of Student's Day 2026</p>
+        <h1 class="page-header__title">Salón de Campeones</h1>
+        <p class="page-header__sub">Celebrando a los campeones del Día del Estudiante 2026</p>
       </div>
 
-      <!-- Category filter tabs -->
-      <div class="winners-filters" id="winnersFilters">
-        <!-- Injected by JS -->
-      </div>
 
       <!-- Winners grid -->
       <div class="winners-grid" id="winnersGrid">
@@ -320,7 +303,7 @@
 
         <div class="admin-tabs">
           <button class="admin-tab active" data-admin-tab="activities">📋 Actividades</button>
-          <button class="admin-tab" data-admin-tab="brackets">🏆 Brackets</button>
+          <button class="admin-tab" data-admin-tab="brackets">🏆 Resultados</button>
           <button class="admin-tab" data-admin-tab="winners">🥇 Ganadores</button>
           <button class="admin-tab" data-admin-tab="registrations">📊 Registros</button>
           <button class="admin-tab" data-admin-tab="logs">📡 Logs</button>
@@ -355,17 +338,28 @@
         <!-- Tab: Brackets -->
         <div class="admin-tab-content" id="adminTab-brackets">
           <div class="admin-section-header">
-            <h2>Editar Brackets</h2>
-            <select id="adminBracketSport" class="admin-select">
-              <option value="basketball">🏀 Basketball</option>
-              <option value="soccer">⚽ Soccer</option>
-              <option value="volleyball">🏐 Volleyball</option>
-            </select>
+            <h2>Editar Resultados</h2>
+            <div class="admin-bracket-controls">
+              <select id="adminBracketSport" class="admin-select">
+                <option value="basketball">🏀 Básquet</option>
+                <option value="soccer">⚽ Fútbol</option>
+                <option value="volleyball">🏐 Voleibol</option>
+                <option value="chess">♟️ Ajedrez</option>
+                <option value="videogames">🎮 Videojuegos</option>
+                <option value="pingpong">🏓 Ping Pong</option>
+                <option value="tochito">🏈 Tochito</option>
+              </select>
+              <button class="btn btn--primary btn--sm" id="adminBracketEdit">Editar</button>
+            </div>
           </div>
-          <textarea class="admin-json-editor" id="adminBracketEditor" spellcheck="false"></textarea>
-          <div class="admin-actions-row">
-            <button class="btn btn--outline btn--sm" id="adminBracketReset">Restaurar</button>
-            <button class="btn btn--primary btn--sm" id="adminBracketApply">Aplicar Cambios</button>
+          <div class="admin-bracket-teams" id="adminBracketTeams" style="display:none">
+            <h3>Equipos / Jugadores</h3>
+            <div class="admin-teams-grid" id="adminTeamsGrid"></div>
+          </div>
+          <div class="admin-bracket-visual" id="adminBracketVisual"></div>
+          <div class="admin-actions-row" id="adminBracketActions" style="display:none">
+            <button class="btn btn--outline btn--sm" id="adminBracketCancel">Cancelar</button>
+            <button class="btn btn--primary btn--sm" id="adminBracketSave">Guardar Cambios</button>
           </div>
           <p class="admin-feedback" id="adminBracketFeedback"></p>
         </div>
@@ -396,6 +390,7 @@
                   <th>Máximo</th>
                   <th>Disponibles</th>
                   <th>Estado</th>
+                  <th>Descargar</th>
                 </tr>
               </thead>
               <tbody id="adminRegistrationsBody">
@@ -458,7 +453,7 @@
               <div class="admin-form-group">
                 <label>Categoría</label>
                 <select id="editActivityCategory">
-                  <option value="sports">Sports</option><option value="academic">Academic</option><option value="arts">Arts</option><option value="fun">Fun</option>
+                  <option value="sports">Deportes</option><option value="academic">Académico</option><option value="arts">Artes</option><option value="fun">Diversión</option>
                 </select>
               </div>
             </div>
@@ -529,7 +524,7 @@
               <div class="admin-form-group">
                 <label>Categoría</label>
                 <select id="editWinnerCategory">
-                  <option value="sports">Sports</option><option value="academic">Academic</option><option value="arts">Arts</option><option value="fun">Fun</option>
+                  <option value="sports">Deportes</option><option value="academic">Académico</option><option value="arts">Artes</option><option value="fun">Diversión</option>
                 </select>
               </div>
             </div>
@@ -551,7 +546,7 @@
   <!-- ===== RULES MODAL ===== -->
   <div class="modal-overlay" id="rulesModal">
     <div class="modal">
-      <button class="modal__close" aria-label="Close">&times;</button>
+      <button class="modal__close" aria-label="Cerrar">&times;</button>
       <div class="modal__header">
         <span class="modal__emoji" id="rulesModal-emoji"></span>
         <div>
@@ -560,10 +555,10 @@
         </div>
       </div>
       <div class="modal__body">
-        <h3 class="modal__section-title">📋 Rules</h3>
+        <h3 class="modal__section-title">📋 Reglas</h3>
         <ol class="rules-list" id="rulesModal-list"></ol>
         <div class="modal__capacity-info">
-          <span class="modal__capacity-label">Participants:</span>
+          <span class="modal__capacity-label">Participantes:</span>
           <span class="modal__capacity-value" id="rulesModal-capacity"></span>
         </div>
       </div>
@@ -572,7 +567,7 @@
 
   <!-- ===== FOOTER ===== -->
   <footer class="footer">
-    <p>&copy; 2026 Student's Day — Made by Teacher Hugo .</p>
+    <p>&copy; 2026 Día del Estudiante — Hecho por el Profe Hugo.</p>
     <a href="#" class="footer-admin-link nav-link" data-page="admin" title="Admin">🔒</a>
   </footer>
 

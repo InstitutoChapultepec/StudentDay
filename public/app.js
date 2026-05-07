@@ -1,14 +1,14 @@
 /* ===== DATA ===== */
 let ACTIVITIES = [
   {
-    id: 1, name: "Ajedrez", emoji: "♟️", category: "academic", day: "Lunes", desc: "Torneo de ajedrez entre todas las secciones. Demuestra tu estrategia.", time: "Después de examen", maxParticipants: 32, filledSpots: 28, rules: [
+    id: 1, name: "Ajedrez", emoji: "♟️", category: "academic", day: "Lunes", desc: "Torneo de ajedrez entre todas las secciones. Demuestra tu estrategia.", time: "Después de examen", maxParticipants: 32, filledSpots: 0, rules: [
       "Partidas con reloj (10 minutos por jugador).",
       "Sistema suizo a 5 rondas.",
       "El organizador Murguía será el juez principal."
     ]
   },
   {
-    id: 2, name: "Tochito", emoji: "🏈", category: "sports", day: "Lunes", desc: "Partidos de tochito bandera por equipos organizados por Many.", time: "Después de examen", maxParticipants: 36, filledSpots: 24, rules: [
+    id: 2, name: "Tochito", emoji: "🏈", category: "sports", day: "Lunes", desc: "Partidos de tochito bandera por equipos organizados por Many.", time: "Después de examen", maxParticipants: 36, filledSpots: 0, rules: [
       "4 equipos de 6 integrantes (5 en cancha).",
       "Se nombrarán los capitanes (Many) y ellos formarán su equipo, máximo 2 alumnos de un mismo grado.",
       "Dos grupos de 3 (round robin). Los ganadores de c/grupo juegan la final.",
@@ -16,14 +16,14 @@ let ACTIVITIES = [
     ]
   },
   {
-    id: 3, name: "Ping Pong", emoji: "🏓", category: "sports", day: "Martes", desc: "Gran final del torneo de ping pong. ¡Solo los mejores!", time: "Después de examen", maxParticipants: 16, filledSpots: 16, rules: [
+    id: 3, name: "Ping Pong", emoji: "🏓", category: "sports", day: "Martes", desc: "Gran final del torneo de ping pong. ¡Solo los mejores!", time: "Después de examen", maxParticipants: 16, filledSpots: 0, rules: [
       "Partidos al mejor de 3 sets (hasta 11 puntos).",
       "Torneo de eliminación directa.",
       "Trae tu propia raqueta (opcional).", "Los grupos se formarán por sorteo."
     ]
   },
   {
-    id: 4, name: "Básquet", emoji: "🏀", category: "sports", day: "Martes", desc: "Final del torneo de básquetbol 3v3 con Mauricio.", time: "Después de examen", maxParticipants: 32, filledSpots: 24, rules: [
+    id: 4, name: "Básquet", emoji: "🏀", category: "sports", day: "Martes", desc: "Final del torneo de básquetbol 3v3 con Mauricio.", time: "Después de examen", maxParticipants: 32, filledSpots: 0, rules: [
       "Participarán los primeros 32 jugadores en registrarse.",
       "4 integrantes, 3 en cancha.",
       "Se nombrarán los capitanes y ellos formarán su equipo.",
@@ -32,7 +32,7 @@ let ACTIVITIES = [
     ]
   },
   {
-    id: 5, name: "Fútbol", emoji: "⚽", category: "sports", day: "Miércoles", desc: "La gran final del torneo de fútbol con Ramón y Camacho.", time: "Después de examen", maxParticipants: 36, filledSpots: 30, rules: [
+    id: 5, name: "Fútbol", emoji: "⚽", category: "sports", day: "Miércoles", desc: "La gran final del torneo de fútbol con Ramón y Camacho.", time: "Después de examen", maxParticipants: 36, filledSpots: 0, rules: [
       "Participan los primeros 6 equipos en registrarse.",
       "6 integrantes, 5 en cancha, máximo 2 alumnos de un mismo grado por equipo.",
       "2 grupos de 3 equipos (round robin), el 1ro y 2do lugar de cada grupo jugarán la siguiente ronda.",
@@ -40,7 +40,7 @@ let ACTIVITIES = [
     ]
   },
   {
-    id: 6, name: "Voleibol", emoji: "🏐", category: "sports", day: "Miércoles", desc: "Final del torneo de voleibol organizado por Carlos.", time: "Después de examen", maxParticipants: 30, filledSpots: 20, rules: [
+    id: 6, name: "Voleibol", emoji: "🏐", category: "sports", day: "Miércoles", desc: "Final del torneo de voleibol organizado por Carlos.", time: "Después de examen", maxParticipants: 30, filledSpots: 0, rules: [
       "Participarán los primeros 6 equipos en registrarse.",
       "5 integrantes, 4 en cancha, máximo 2 alumnos de un mismo grado.",
       "2 grupos de 3 (round robin), los dos primeros lugares de cada grupo jugarán la siguiente ronda.",
@@ -48,21 +48,23 @@ let ACTIVITIES = [
     ]
   },
   {
-    id: 7, name: "Globos", emoji: "🎈", category: "fun", day: "Jueves", desc: "Competencia de globos entre secciones con Camacho.", time: "Después de examen", maxParticipants: 50, filledSpots: 35, rules: [
+    id: 7, name: "Globos", emoji: "🎈", category: "fun", day: "Jueves", desc: "Competencia de globos entre secciones con Camacho.", time: "Después de examen", maxParticipants: 50, filledSpots: 0, rules: [
       "Participación por equipos.",
       "Se revelarán los retos en el momento.",
       "¡Prepárate para mojarte!"
     ]
   },
   {
-    id: 8, name: "Videojuegos", emoji: "🎮", category: "fun", day: "Jueves", desc: "Torneo de videojuegos con Hugo y Temo. ¡Trae tu mejor estrategia!", time: "Después de examen", maxParticipants: 40, filledSpots: 38, rules: [
-      "Torneo de Smash Bros y FIFA.",
-      "Lleva tu propio control si lo prefieres.",
-      "Eliminación directa."
+    id: 8, name: "Videojuegos", emoji: "🎮", category: "fun", day: "Jueves", desc: "Torneo de videojuegos con Hugo y Temo. ¡Trae tu mejor estrategia!", time: "Después de examen", maxParticipants: 40, filledSpots: 0, rules: [
+      "Torneo de Minecraft BedWars.",
+	  "Máximo 10 equipos de 5 integrantes", 
+      "Lleva tu propio control/mouse/teclado si lo prefieres.",
+      "Eliminación directa.",
+	  "Los equipos se formarán por sorteo."
     ]
   },
   {
-    id: 9, name: "Búsqueda del tesoro", emoji: "🗺️", category: "fun", day: "Jueves", desc: "Búsqueda de pistas y tesoros por todo el campus con Jorge y Paco.", time: "Después de examen", maxParticipants: 107, filledSpots: 45, rules: [
+    id: 9, name: "Búsqueda del tesoro", emoji: "🗺️", category: "fun", day: "Jueves", desc: "Búsqueda de pistas y tesoros por todo el campus con Jorge y Paco.", time: "Después de examen", maxParticipants: 107, filledSpots: 0, rules: [
       "Individual, no por equipos.",
       "Se prohíbe correr en los pasillos.",
       "El chapulin jamas estara dentro de un aula u oficina",
@@ -70,7 +72,7 @@ let ACTIVITIES = [
     ]
   },
   {
-    id: 10, name: "Pista comando", emoji: "🏃", category: "sports", day: "Jueves", desc: "Circuito de obstáculos y retos físicos", time: "Después de examen", maxParticipants: 50, filledSpots: 20, rules: [
+    id: 10, name: "Pista comando", emoji: "🏃", category: "sports", day: "Jueves", desc: "Circuito de obstáculos y retos físicos", time: "Después de examen", maxParticipants: 50, filledSpots: 0, rules: [
       "Máximo 10 equipos de 5 integrantes.",
       "Detalles del recorrido se darán por separado.",
       "Orden de participación: del último al primero en inscribirse.",
@@ -78,7 +80,7 @@ let ACTIVITIES = [
     ]
   },
   {
-    id: 11, name: "Beyond / Fiesta", emoji: "🎉", category: "fun", day: "Viernes", desc: "¡El gran cierre de la Semana del Estudiante! Música, comida y diversión.", time: "Todo el día", maxParticipants: 107, filledSpots: 50, rules: [
+    id: 11, name: "Beyond / Fiesta", emoji: "🎉", category: "fun", day: "Viernes", desc: "¡El gran cierre de la Semana del Estudiante! Música, comida y diversión.", time: "Todo el día", maxParticipants: 107, filledSpots: 0, rules: [
       "Entrada libre para todos los estudiantes.",
       "Habrá comida, música y actividades sorpresa.",
       "¡Disfruta el último día!"
@@ -87,25 +89,15 @@ let ACTIVITIES = [
 ];
 
 
-const WINNERS = [
-  { activity: "Basketball 3v3", name: "Ahmad Khalil", team: "Class 12-A", place: 1, photo: "img/winner1.png", category: "sports", emoji: "🏀" },
-  { activity: "Soccer Tournament", name: "Omar Haddad", team: "Class 12-A", place: 1, photo: "img/winner2.png", category: "sports", emoji: "⚽" },
-  { activity: "Volleyball", name: "Youssef Nader", team: "Class 12-B", place: 1, photo: "img/winner3.png", category: "sports", emoji: "🏐" },
-  { activity: "Art Contest", name: "Rami Farah", team: "Class 11-C", place: 1, photo: "img/winner4.png", category: "arts", emoji: "🎨" },
-  { activity: "Music Battle", name: "Karim Zayed", team: "Class 10-A", place: 1, photo: "img/winner5.png", category: "arts", emoji: "🎸" },
-  { activity: "Debate Club", name: "Liam Chen", team: "Class 12-A", place: 1, photo: "img/winner7.png", category: "academic", emoji: "🎤" },
-  { activity: "Science Quiz", name: "Nabil Mansour", team: "Class 11-A", place: 1, photo: "img/winner6.png", category: "academic", emoji: "🔬" },
-  { activity: "Treasure Hunt", name: "Tarek Bassam", team: "Class 9-B", place: 1, photo: "img/winner8.png", category: "fun", emoji: "🗺️" },
-  { activity: "Dance Off", name: "Samir Jaber", team: "Class 10-B", place: 1, photo: "img/winner9.png", category: "fun", emoji: "💃" },
-];
+const WINNERS = [];
 
 const PLACE_EMOJI = { 1: "🥇", 2: "🥈", 3: "🥉" };
 const WINNER_CATEGORIES = [
-  { key: "all", label: "All Winners" },
-  { key: "sports", label: "🏅 Sports" },
-  { key: "arts", label: "🎨 Arts" },
-  { key: "academic", label: "📚 Academic" },
-  { key: "fun", label: "🎉 Fun" },
+  { key: "all", label: "Todos" },
+  { key: "sports", label: "🏅 Deportes" },
+  { key: "arts", label: "🎨 Artes" },
+  { key: "academic", label: "📚 Académico" },
+  { key: "fun", label: "🎉 Diversión" },
 ];
 
 /* ===== SCHEDULE DATA ===== */
@@ -340,7 +332,7 @@ function animateCounters() {
 animateCounters();
 
 /* ===== COUNTDOWN ===== */
-const EVENT_DATE = new Date("2026-06-15T08:00:00");
+const EVENT_DATE = new Date("2026-05-18T08:00:00");
 
 function updateCountdown() {
   const now = new Date();
@@ -360,6 +352,7 @@ setInterval(updateCountdown, 1000);
 
 /* ===== ACTIVITIES ===== */
 const TAG_CLASS = { sports: "tag-sports", arts: "tag-arts", academic: "tag-academic", fun: "tag-fun" };
+const TAG_LABEL = { sports: "Deportes", arts: "Artes", academic: "Académico", fun: "Diversión" };
 
 function renderActivities(filter = "all") {
   const grid = $("#activitiesGrid");
@@ -374,10 +367,10 @@ function renderActivities(filter = "all") {
       <div class="activity-card__banner">${a.emoji}</div>
       <div class="activity-card__body">
         <div class="activity-card__top-row">
-          <span class="activity-card__tag ${TAG_CLASS[a.category]}">${a.category}</span>
+          <span class="activity-card__tag ${TAG_CLASS[a.category]}">${TAG_LABEL[a.category] || a.category}</span>
           <span class="activity-card__status ${isFull ? "status--full" : "status--open"}">
             <span class="status-dot"></span>
-            ${isFull ? "Full" : `${spotsLeft} spot${spotsLeft === 1 ? "" : "s"} left`}
+            ${isFull ? "Lleno" : `${spotsLeft} lugar${spotsLeft === 1 ? "" : "es"} disponible${spotsLeft === 1 ? "" : "s"}`}
           </span>
         </div>
         <h3 class="activity-card__title">${a.name}</h3>
@@ -386,11 +379,11 @@ function renderActivities(filter = "all") {
           <div class="capacity-bar">
             <div class="capacity-bar__fill ${isFull ? "capacity-bar__fill--full" : ""}" style="width:${pct}%"></div>
           </div>
-          <span class="capacity-label">${a.filledSpots} / ${a.maxParticipants} participants</span>
+          <span class="capacity-label">${a.filledSpots} / ${a.maxParticipants} participantes</span>
         </div>
         <div class="activity-card__meta">
           <span>⏰ ${a.time}</span>
-          <button class="rules-btn" data-activity-id="${a.id}">📋 View Rules</button>
+          <button class="rules-btn" data-activity-id="${a.id}">📋 Ver Reglas</button>
         </div>
       </div>
     </div>`;
@@ -405,6 +398,8 @@ async function fetchActivities() {
     const res = await fetch('/api/activities');
     const data = await res.json();
     if (data.activities) {
+      const incoming = JSON.stringify(data.activities);
+      if (incoming === JSON.stringify(ACTIVITIES)) return;
       ACTIVITIES = data.activities;
       renderActivities($$(".filter-btn.active")[0]?.dataset.filter || "all");
       if ($("#page-register").classList.contains("page--active")) {
@@ -418,7 +413,7 @@ async function fetchActivities() {
 
 // Initial fetch & polling
 fetchActivities();
-setInterval(fetchActivities, 10000);
+setInterval(fetchActivities, 30000);
 
 // Log page views
 fetch('/api/log', {
@@ -439,14 +434,17 @@ document.addEventListener("click", (e) => {
   }
 });
 
-// Filter buttons
-$("#filterBar").addEventListener("click", (e) => {
-  const btn = e.target.closest(".filter-btn");
-  if (!btn) return;
-  $$(".filter-btn").forEach((b) => b.classList.remove("active"));
-  btn.classList.add("active");
-  renderActivities(btn.dataset.filter);
-});
+// Filter buttons (only if filter bar exists)
+const filterBar = $("#filterBar");
+if (filterBar) {
+  filterBar.addEventListener("click", (e) => {
+    const btn = e.target.closest(".filter-btn");
+    if (!btn) return;
+    $$(".filter-btn").forEach((b) => b.classList.remove("active"));
+    btn.classList.add("active");
+    renderActivities(btn.dataset.filter);
+  });
+}
 
 /* ===== RULES MODAL ===== */
 function openRulesModal(activityId) {
@@ -458,11 +456,11 @@ function openRulesModal(activityId) {
   $("#rulesModal-emoji").textContent = activity.emoji;
   $("#rulesModal-title").textContent = activity.name;
   $("#rulesModal-status").className = `activity-card__status ${isFull ? "status--full" : "status--open"}`;
-  $("#rulesModal-status").innerHTML = `<span class="status-dot"></span>${isFull ? "Full" : (activity.maxParticipants - activity.filledSpots) + " spots left"}`;
+  $("#rulesModal-status").innerHTML = `<span class="status-dot"></span>${isFull ? "Lleno" : (activity.maxParticipants - activity.filledSpots) + " lugares disponibles"}`;
   $("#rulesModal-list").innerHTML = activity.rules
     .map((r, i) => `<li><span class="rule-num">${i + 1}</span><span>${r}</span></li>`)
     .join("");
-  $("#rulesModal-capacity").textContent = `${activity.filledSpots} / ${activity.maxParticipants} participants`;
+  $("#rulesModal-capacity").textContent = `${activity.filledSpots} / ${activity.maxParticipants} participantes`;
   modal.classList.add("modal--open");
   document.body.style.overflow = "hidden";
 }
@@ -517,7 +515,7 @@ function renderRegisterChecklist() {
           <div class="checklist-item__content">
             <span class="checklist-item__emoji">${a.emoji}</span>
             <span class="checklist-item__name">${a.name}</span>
-            <span class="checklist-item__spots">${isFull ? "Full" : spotsLeft + " spots left"}</span>
+            <span class="checklist-item__spots">${isFull ? "Lleno" : spotsLeft + " lugares"}</span>
           </div>
         </label>
       `;
@@ -551,7 +549,7 @@ $("#verifyForm").addEventListener("submit", async (e) => {
   
   errorEl.textContent = "";
   btn.classList.add("loading");
-  btn.textContent = "Verificando...";
+  btn.textContent = "Verificando…";
 
   try {
     const res = await fetch(`/api/verify?code=${encodeURIComponent(code)}`);
@@ -659,7 +657,7 @@ $("#registerForm").addEventListener("submit", async (e) => {
   } catch (err) {
     alert("Error de conexión. Intenta de nuevo.");
   } finally {
-    btn.textContent = "Submit Registration";
+    btn.textContent = "Enviar Registro";
     btn.disabled = false;
   }
 });
@@ -678,106 +676,246 @@ $("#confirmNewBtn").addEventListener("click", () => {
 // Editable bracket data — each sport has an 8-team single elimination bracket
 const BRACKETS_DATA = {
   basketball: {
-    sport: "Basketball 3v3",
+    sport: "Básquet 3v3",
     emoji: "🏀",
     teams: [
-      { seed: 1, name: "Class 12-A" },
-      { seed: 2, name: "Class 11-B" },
-      { seed: 3, name: "Class 10-A" },
-      { seed: 4, name: "Class 9-C" },
-      { seed: 5, name: "Class 12-B" },
-      { seed: 6, name: "Class 11-A" },
-      { seed: 7, name: "Class 10-B" },
-      { seed: 8, name: "Class 9-A" },
+      { seed: 1, name: "TBD" },
+      { seed: 2, name: "TBD" },
+      { seed: 3, name: "TBD" },
+      { seed: 4, name: "TBD" },
+      { seed: 5, name: "TBD" },
+      { seed: 6, name: "TBD" },
+      { seed: 7, name: "TBD" },
+      { seed: 8, name: "TBD" },
     ],
     rounds: [
       {
-        title: "Quarter-Finals", matches: [
-          { team1: 0, team2: 7, score1: 21, score2: 18 },
-          { team1: 3, team2: 4, score1: 15, score2: 19 },
-          { team1: 1, team2: 6, score1: 22, score2: 17 },
-          { team1: 2, team2: 5, score1: 20, score2: 24 },
+        title: "Cuartos de Final", matches: [
+          { team1: 0, team2: 7, score1: 0, score2: 0 },
+          { team1: 3, team2: 4, score1: 0, score2: 0 },
+          { team1: 1, team2: 6, score1: 0, score2: 0 },
+          { team1: 2, team2: 5, score1: 0, score2: 0 },
         ]
       },
       {
-        title: "Semi-Finals", matches: [
-          { team1: 0, team2: 4, score1: 25, score2: 19 },
-          { team1: 1, team2: 5, score1: 18, score2: 23 },
+        title: "Semifinales", matches: [
+          { team1: 0, team2: 3, score1: 0, score2: 0 },
+          { team1: 1, team2: 2, score1: 0, score2: 0 },
         ]
       },
       {
         title: "🏆 Final", matches: [
-          { team1: 0, team2: 5, score1: 28, score2: 24 },
+          { team1: 0, team2: 1, score1: 0, score2: 0 },
         ]
       },
     ],
   },
   soccer: {
-    sport: "Soccer Tournament",
+    sport: "Fútbol",
     emoji: "⚽",
     teams: [
-      { seed: 1, name: "Class 12-A" },
-      { seed: 2, name: "Class 10-A" },
-      { seed: 3, name: "Class 11-C" },
-      { seed: 4, name: "Class 9-B" },
-      { seed: 5, name: "Class 12-C" },
-      { seed: 6, name: "Class 10-B" },
-      { seed: 7, name: "Class 11-A" },
-      { seed: 8, name: "Class 9-A" },
+      { seed: 1, name: "TBD" },
+      { seed: 2, name: "TBD" },
+      { seed: 3, name: "TBD" },
+      { seed: 4, name: "TBD" },
+      { seed: 5, name: "TBD" },
+      { seed: 6, name: "TBD" },
+      { seed: 7, name: "TBD" },
+      { seed: 8, name: "TBD" },
     ],
     rounds: [
       {
-        title: "Quarter-Finals", matches: [
-          { team1: 0, team2: 7, score1: 3, score2: 1 },
-          { team1: 3, team2: 4, score1: 2, score2: 2, pen1: 4, pen2: 3 },
-          { team1: 1, team2: 6, score1: 1, score2: 0 },
-          { team1: 2, team2: 5, score1: 3, score2: 4 },
+        title: "Cuartos de Final", matches: [
+          { team1: 0, team2: 7, score1: 0, score2: 0 },
+          { team1: 3, team2: 4, score1: 0, score2: 0 },
+          { team1: 1, team2: 6, score1: 0, score2: 0 },
+          { team1: 2, team2: 5, score1: 0, score2: 0 },
         ]
       },
       {
-        title: "Semi-Finals", matches: [
-          { team1: 0, team2: 3, score1: 2, score2: 1 },
-          { team1: 1, team2: 5, score1: 0, score2: 3 },
+        title: "Semifinales", matches: [
+          { team1: 0, team2: 3, score1: 0, score2: 0 },
+          { team1: 1, team2: 2, score1: 0, score2: 0 },
         ]
       },
       {
         title: "🏆 Final", matches: [
-          { team1: 0, team2: 5, score1: 2, score2: 1 },
+          { team1: 0, team2: 1, score1: 0, score2: 0 },
         ]
       },
     ],
   },
   volleyball: {
-    sport: "Volleyball",
+    sport: "Voleibol",
     emoji: "🏐",
     teams: [
-      { seed: 1, name: "Class 12-B" },
-      { seed: 2, name: "Class 11-A" },
-      { seed: 3, name: "Class 10-B" },
-      { seed: 4, name: "Class 9-A" },
-      { seed: 5, name: "Class 12-A" },
-      { seed: 6, name: "Class 10-C" },
-      { seed: 7, name: "Class 11-B" },
-      { seed: 8, name: "Class 9-C" },
+      { seed: 1, name: "TBD" },
+      { seed: 2, name: "TBD" },
+      { seed: 3, name: "TBD" },
+      { seed: 4, name: "TBD" },
+      { seed: 5, name: "TBD" },
+      { seed: 6, name: "TBD" },
+      { seed: 7, name: "TBD" },
+      { seed: 8, name: "TBD" },
     ],
     rounds: [
       {
-        title: "Quarter-Finals", matches: [
-          { team1: 0, team2: 7, score1: 2, score2: 0 },
-          { team1: 3, team2: 4, score1: 1, score2: 2 },
-          { team1: 1, team2: 6, score1: 2, score2: 1 },
-          { team1: 2, team2: 5, score1: 2, score2: 0 },
+        title: "Cuartos de Final", matches: [
+          { team1: 0, team2: 7, score1: 0, score2: 0 },
+          { team1: 3, team2: 4, score1: 0, score2: 0 },
+          { team1: 1, team2: 6, score1: 0, score2: 0 },
+          { team1: 2, team2: 5, score1: 0, score2: 0 },
         ]
       },
       {
-        title: "Semi-Finals", matches: [
-          { team1: 0, team2: 4, score1: 2, score2: 1 },
-          { team1: 1, team2: 2, score1: 0, score2: 2 },
+        title: "Semifinales", matches: [
+          { team1: 0, team2: 3, score1: 0, score2: 0 },
+          { team1: 1, team2: 2, score1: 0, score2: 0 },
         ]
       },
       {
         title: "🏆 Final", matches: [
-          { team1: 0, team2: 2, score1: 2, score2: 1 },
+          { team1: 0, team2: 1, score1: 0, score2: 0 },
+        ]
+      },
+    ],
+  },
+  chess: {
+    sport: "Ajedrez",
+    emoji: "♟️",
+    teams: [
+      { seed: 1, name: "TBD" },
+      { seed: 2, name: "TBD" },
+      { seed: 3, name: "TBD" },
+      { seed: 4, name: "TBD" },
+      { seed: 5, name: "TBD" },
+      { seed: 6, name: "TBD" },
+      { seed: 7, name: "TBD" },
+      { seed: 8, name: "TBD" },
+    ],
+    rounds: [
+      {
+        title: "Cuartos de Final", matches: [
+          { team1: 0, team2: 7, score1: 0, score2: 0 },
+          { team1: 3, team2: 4, score1: 0, score2: 0 },
+          { team1: 1, team2: 6, score1: 0, score2: 0 },
+          { team1: 2, team2: 5, score1: 0, score2: 0 },
+        ]
+      },
+      {
+        title: "Semifinales", matches: [
+          { team1: 0, team2: 3, score1: 0, score2: 0 },
+          { team1: 1, team2: 2, score1: 0, score2: 0 },
+        ]
+      },
+      {
+        title: "🏆 Final", matches: [
+          { team1: 0, team2: 1, score1: 0, score2: 0 },
+        ]
+      },
+    ],
+  },
+  videogames: {
+    sport: "Videojuegos",
+    emoji: "🎮",
+    teams: [
+      { seed: 1, name: "TBD" },
+      { seed: 2, name: "TBD" },
+      { seed: 3, name: "TBD" },
+      { seed: 4, name: "TBD" },
+      { seed: 5, name: "TBD" },
+      { seed: 6, name: "TBD" },
+      { seed: 7, name: "TBD" },
+      { seed: 8, name: "TBD" },
+    ],
+    rounds: [
+      {
+        title: "Cuartos de Final", matches: [
+          { team1: 0, team2: 7, score1: 0, score2: 0 },
+          { team1: 3, team2: 4, score1: 0, score2: 0 },
+          { team1: 1, team2: 6, score1: 0, score2: 0 },
+          { team1: 2, team2: 5, score1: 0, score2: 0 },
+        ]
+      },
+      {
+        title: "Semifinales", matches: [
+          { team1: 0, team2: 3, score1: 0, score2: 0 },
+          { team1: 1, team2: 2, score1: 0, score2: 0 },
+        ]
+      },
+      {
+        title: "🏆 Final", matches: [
+          { team1: 0, team2: 1, score1: 0, score2: 0 },
+        ]
+      },
+    ],
+  },
+  pingpong: {
+    sport: "Ping Pong",
+    emoji: "🏓",
+    teams: [
+      { seed: 1, name: "TBD" },
+      { seed: 2, name: "TBD" },
+      { seed: 3, name: "TBD" },
+      { seed: 4, name: "TBD" },
+      { seed: 5, name: "TBD" },
+      { seed: 6, name: "TBD" },
+      { seed: 7, name: "TBD" },
+      { seed: 8, name: "TBD" },
+    ],
+    rounds: [
+      {
+        title: "Cuartos de Final", matches: [
+          { team1: 0, team2: 7, score1: 0, score2: 0 },
+          { team1: 3, team2: 4, score1: 0, score2: 0 },
+          { team1: 1, team2: 6, score1: 0, score2: 0 },
+          { team1: 2, team2: 5, score1: 0, score2: 0 },
+        ]
+      },
+      {
+        title: "Semifinales", matches: [
+          { team1: 0, team2: 3, score1: 0, score2: 0 },
+          { team1: 1, team2: 2, score1: 0, score2: 0 },
+        ]
+      },
+      {
+        title: "🏆 Final", matches: [
+          { team1: 0, team2: 1, score1: 0, score2: 0 },
+        ]
+      },
+    ],
+  },
+  tochito: {
+    sport: "Tochito",
+    emoji: "🏈",
+    teams: [
+      { seed: 1, name: "TBD" },
+      { seed: 2, name: "TBD" },
+      { seed: 3, name: "TBD" },
+      { seed: 4, name: "TBD" },
+      { seed: 5, name: "TBD" },
+      { seed: 6, name: "TBD" },
+      { seed: 7, name: "TBD" },
+      { seed: 8, name: "TBD" },
+    ],
+    rounds: [
+      {
+        title: "Cuartos de Final", matches: [
+          { team1: 0, team2: 7, score1: 0, score2: 0 },
+          { team1: 3, team2: 4, score1: 0, score2: 0 },
+          { team1: 1, team2: 6, score1: 0, score2: 0 },
+          { team1: 2, team2: 5, score1: 0, score2: 0 },
+        ]
+      },
+      {
+        title: "Semifinales", matches: [
+          { team1: 0, team2: 3, score1: 0, score2: 0 },
+          { team1: 1, team2: 2, score1: 0, score2: 0 },
+        ]
+      },
+      {
+        title: "🏆 Final", matches: [
+          { team1: 0, team2: 1, score1: 0, score2: 0 },
         ]
       },
     ],
@@ -793,37 +931,72 @@ function getWinner(match) {
   return match.score1 > match.score2 ? 1 : (match.score2 > match.score1 ? 2 : 0);
 }
 
-function renderBracket(sport) {
+function resolveBracketTeam(data, roundIndex, matchIndex, side) {
+  const roundMatch = data.rounds[roundIndex].matches[matchIndex];
+  const teamIdx = side === 1 ? roundMatch.team1 : roundMatch.team2;
+
+  if (roundIndex === 0) {
+    return data.teams[teamIdx];
+  }
+
+  // For semifinal/final rounds, derive participants from previous-round winners.
+  const sourceMatchIndex = side === 1 ? matchIndex * 2 : (matchIndex * 2) + 1;
+  const prevRoundMatch = data.rounds[roundIndex - 1].matches[sourceMatchIndex];
+  if (!prevRoundMatch) return data.teams[teamIdx];
+
+  const winner = getWinner(prevRoundMatch);
+  if (winner === 1) return data.teams[prevRoundMatch.team1];
+  if (winner === 2) return data.teams[prevRoundMatch.team2];
+
+  return {
+    seed: "?",
+    name: `Ganador M${sourceMatchIndex + 1}`,
+  };
+}
+
+function renderBracket(sport, targetEl, editMode) {
   currentSport = sport;
   const data = bracketsLive[sport];
-  const tree = $("#bracketTree");
+  const tree = targetEl || $("#bracketTree");
   const banner = $("#championBanner");
 
-  // Build round columns
   let html = "";
   data.rounds.forEach((round, ri) => {
     const isFinal = ri === data.rounds.length - 1;
     html += `<div class="bracket-round ${isFinal ? "bracket-round--final" : ""}">`;
     html += `<div class="bracket-round__label">${round.title}</div>`;
 
-    round.matches.forEach((m) => {
-      const t1 = data.teams[m.team1];
-      const t2 = data.teams[m.team2];
+    round.matches.forEach((m, mi) => {
+      const t1 = resolveBracketTeam(data, ri, mi, 1);
+      const t2 = resolveBracketTeam(data, ri, mi, 2);
       const w = getWinner(m);
       const penStr1 = m.pen1 !== undefined ? ` (${m.pen1})` : "";
       const penStr2 = m.pen2 !== undefined ? ` (${m.pen2})` : "";
 
       html += `<div class="bracket-match">`;
-      html += `<div class="bracket-team ${w === 1 ? "winner" : (w === 2 ? "loser" : "")}">
-        <span class="bracket-team__seed">#${t1.seed}</span>
-        <span class="bracket-team__name">${t1.name}</span>
-        <span class="bracket-team__score">${m.score1}${penStr1}</span>
-      </div>`;
-      html += `<div class="bracket-team ${w === 2 ? "winner" : (w === 1 ? "loser" : "")}">
-        <span class="bracket-team__seed">#${t2.seed}</span>
-        <span class="bracket-team__name">${t2.name}</span>
-        <span class="bracket-team__score">${m.score2}${penStr2}</span>
-      </div>`;
+      if (editMode) {
+        html += `<div class="bracket-team">
+          <span class="bracket-team__seed">#${t1.seed}</span>
+          <span class="bracket-team__name">${t1.name}</span>
+          <input type="number" class="bracket-edit-score" value="${m.score1}" data-round="${ri}" data-match="${mi}" data-side="1" min="0" />
+        </div>`;
+        html += `<div class="bracket-team">
+          <span class="bracket-team__seed">#${t2.seed}</span>
+          <span class="bracket-team__name">${t2.name}</span>
+          <input type="number" class="bracket-edit-score" value="${m.score2}" data-round="${ri}" data-match="${mi}" data-side="2" min="0" />
+        </div>`;
+      } else {
+        html += `<div class="bracket-team ${w === 1 ? "winner" : (w === 2 ? "loser" : "")}">
+          <span class="bracket-team__seed">#${t1.seed}</span>
+          <span class="bracket-team__name">${t1.name}</span>
+          <span class="bracket-team__score">${m.score1}${penStr1}</span>
+        </div>`;
+        html += `<div class="bracket-team ${w === 2 ? "winner" : (w === 1 ? "loser" : "")}">
+          <span class="bracket-team__seed">#${t2.seed}</span>
+          <span class="bracket-team__name">${t2.name}</span>
+          <span class="bracket-team__score">${m.score2}${penStr2}</span>
+        </div>`;
+      }
       html += `</div>`;
     });
 
@@ -832,26 +1005,22 @@ function renderBracket(sport) {
 
   tree.innerHTML = html;
 
-  // Champion banner
-  const finalMatch = data.rounds[data.rounds.length - 1].matches[0];
-  const fw = getWinner(finalMatch);
-  if (fw) {
-    const champion = fw === 1 ? data.teams[finalMatch.team1] : data.teams[finalMatch.team2];
-    banner.innerHTML = `
-      <div class="champion-inner">
-        <span class="champion-inner__trophy">🏆</span>
-        <div class="champion-inner__text">
-          <span class="champion-inner__label">${data.sport} Champion</span>
-          <span class="champion-inner__name">${champion.name}</span>
-        </div>
-      </div>`;
-  } else {
-    banner.innerHTML = "";
-  }
-
-  // Update admin editor if open
-  if ($("#adminPanel").classList.contains("admin-panel--open")) {
-    $("#adminEditor").value = JSON.stringify(bracketsLive[currentSport], null, 2);
+  if (!targetEl && banner) {
+    const finalMatch = data.rounds[data.rounds.length - 1].matches[0];
+    const fw = getWinner(finalMatch);
+    if (fw) {
+      const champion = fw === 1 ? data.teams[finalMatch.team1] : data.teams[finalMatch.team2];
+      banner.innerHTML = `
+        <div class="champion-inner">
+          <span class="champion-inner__trophy">🏆</span>
+          <div class="champion-inner__text">
+            <span class="champion-inner__label">Campeón de ${data.sport}</span>
+            <span class="champion-inner__name">${champion.name}</span>
+          </div>
+        </div>`;
+    } else {
+      banner.innerHTML = "";
+    }
   }
 }
 
@@ -866,47 +1035,7 @@ $$(".bracket-tab").forEach((tab) => {
 
 renderBracket("basketball");
 
-/* ===== ADMIN PANEL ===== */
-$("#adminToggle").addEventListener("click", () => {
-  const panel = $("#adminPanel");
-  const isOpen = panel.classList.contains("admin-panel--open");
-  if (isOpen) {
-    panel.classList.remove("admin-panel--open");
-  } else {
-    $("#adminEditor").value = JSON.stringify(bracketsLive[currentSport], null, 2);
-    panel.classList.add("admin-panel--open");
-    $("#adminFeedback").textContent = "";
-  }
-});
-
-$("#adminClose").addEventListener("click", () => {
-  $("#adminPanel").classList.remove("admin-panel--open");
-});
-
-$("#adminApply").addEventListener("click", () => {
-  const fb = $("#adminFeedback");
-  try {
-    const parsed = JSON.parse($("#adminEditor").value);
-    // Basic validation
-    if (!parsed.teams || !parsed.rounds) throw new Error("Missing 'teams' or 'rounds' array.");
-    bracketsLive[currentSport] = parsed;
-    renderBracket(currentSport);
-    fb.textContent = "✅ Changes applied successfully!";
-    fb.className = "admin-panel__feedback admin-feedback--ok";
-  } catch (err) {
-    fb.textContent = "❌ Invalid JSON: " + err.message;
-    fb.className = "admin-panel__feedback admin-feedback--err";
-  }
-});
-
-$("#adminReset").addEventListener("click", () => {
-  bracketsLive[currentSport] = JSON.parse(JSON.stringify(BRACKETS_DATA[currentSport]));
-  $("#adminEditor").value = JSON.stringify(bracketsLive[currentSport], null, 2);
-  renderBracket(currentSport);
-  const fb = $("#adminFeedback");
-  fb.textContent = "🔄 Reset to original data.";
-  fb.className = "admin-panel__feedback admin-feedback--ok";
-});
+/* ===== OLD ADMIN PANEL (removed) ===== */
 
 /* ===== SCHEDULE ===== */
 function isToday(day) {
@@ -986,6 +1115,7 @@ document.addEventListener("click", (e) => {
 // Render category filter buttons
 function renderWinnerFilters() {
   const container = $("#winnersFilters");
+  if (!container) return;
   container.innerHTML = WINNER_CATEGORIES.map(
     (cat) => `<button class="winner-filter-btn ${cat.key === "all" ? "active" : ""}" data-cat="${cat.key}">${cat.label}</button>`
   ).join("");
@@ -1156,7 +1286,7 @@ function renderAdminActivities() {
       <td class="emoji-cell">${a.emoji}</td>
       <td><strong>${a.name}</strong></td>
       <td>${a.day || "—"}</td>
-      <td>${a.category}</td>
+      <td>${TAG_LABEL[a.category] || a.category}</td>
       <td>${a.maxParticipants}</td>
       <td>${a.filledSpots}</td>
       <td class="actions-cell">
@@ -1250,39 +1380,87 @@ function deleteActivity(id) {
 }
 
 // ============ BRACKETS MANAGEMENT ============
+let adminBracketEditMode = false;
+
 function loadAdminBracketEditor() {
   const sport = $("#adminBracketSport").value;
-  $("#adminBracketEditor").value = JSON.stringify(bracketsLive[sport], null, 2);
+  const visual = $("#adminBracketVisual");
+  const teamsSection = $("#adminBracketTeams");
+  const actions = $("#adminBracketActions");
+  const editBtn = $("#adminBracketEdit");
   $("#adminBracketFeedback").textContent = "";
+
+  if (adminBracketEditMode) {
+    editBtn.textContent = "Vista previa";
+    editBtn.classList.add("btn--outline");
+    editBtn.classList.remove("btn--primary");
+    actions.style.display = "";
+    teamsSection.style.display = "";
+    renderAdminTeamsGrid(sport);
+    renderBracket(sport, visual, true);
+  } else {
+    editBtn.textContent = "Editar";
+    editBtn.classList.remove("btn--outline");
+    editBtn.classList.add("btn--primary");
+    actions.style.display = "none";
+    teamsSection.style.display = "none";
+    renderBracket(sport, visual, false);
+  }
 }
 
-$("#adminBracketSport").addEventListener("change", loadAdminBracketEditor);
+function renderAdminTeamsGrid(sport) {
+  const data = bracketsLive[sport];
+  const grid = $("#adminTeamsGrid");
+  grid.innerHTML = data.teams.map((t, i) =>
+    `<div class="admin-team-row">
+      <label>#${t.seed}</label>
+      <input type="text" class="bracket-edit-name" value="${t.name}" data-team-idx="${i}" />
+    </div>`
+  ).join("");
+}
 
-$("#adminBracketApply").addEventListener("click", () => {
-  const sport = $("#adminBracketSport").value;
-  const feedback = $("#adminBracketFeedback");
-  try {
-    const parsed = JSON.parse($("#adminBracketEditor").value);
-    bracketsLive[sport] = parsed;
-    saveToLocalStorage();
-    renderBracket(currentSport);
-    feedback.textContent = "✅ Cambios aplicados correctamente";
-    feedback.className = "admin-feedback admin-feedback--success";
-  } catch (err) {
-    feedback.textContent = "❌ JSON inválido: " + err.message;
-    feedback.className = "admin-feedback admin-feedback--error";
-  }
+$("#adminBracketSport").addEventListener("change", () => {
+  adminBracketEditMode = false;
+  loadAdminBracketEditor();
 });
 
-$("#adminBracketReset").addEventListener("click", () => {
-  const sport = $("#adminBracketSport").value;
-  bracketsLive[sport] = JSON.parse(JSON.stringify(BRACKETS_DATA[sport]));
+$("#adminBracketEdit").addEventListener("click", () => {
+  adminBracketEditMode = !adminBracketEditMode;
   loadAdminBracketEditor();
-  saveToLocalStorage();
-  renderBracket(currentSport);
+});
+
+$("#adminBracketSave").addEventListener("click", () => {
+  const sport = $("#adminBracketSport").value;
+  const data = bracketsLive[sport];
   const feedback = $("#adminBracketFeedback");
-  feedback.textContent = "🔄 Bracket restaurado al original";
+
+  const nameInputs = $$("#adminBracketTeams .bracket-edit-name");
+  nameInputs.forEach((input) => {
+    const idx = parseInt(input.dataset.teamIdx);
+    data.teams[idx].name = input.value.trim() || "TBD";
+  });
+
+  const scoreInputs = $$("#adminBracketVisual .bracket-edit-score");
+  scoreInputs.forEach((input) => {
+    const ri = parseInt(input.dataset.round);
+    const mi = parseInt(input.dataset.match);
+    const side = input.dataset.side;
+    const val = parseInt(input.value) || 0;
+    if (side === "1") data.rounds[ri].matches[mi].score1 = val;
+    else data.rounds[ri].matches[mi].score2 = val;
+  });
+
+  saveToLocalStorage();
+  adminBracketEditMode = false;
+  loadAdminBracketEditor();
+  renderBracket(sport);
+  feedback.textContent = "✅ Cambios guardados correctamente";
   feedback.className = "admin-feedback admin-feedback--success";
+});
+
+$("#adminBracketCancel").addEventListener("click", () => {
+  adminBracketEditMode = false;
+  loadAdminBracketEditor();
 });
 
 // ============ WINNERS MANAGEMENT ============
@@ -1415,9 +1593,47 @@ function renderAdminRegistrations() {
         <td>${a.maxParticipants}</td>
         <td>${Math.max(0, spotsLeft)}</td>
         <td><span class="status-badge ${isFull ? "status-badge--full" : "status-badge--open"}">${isFull ? "Lleno" : "Abierto"}</span></td>
+        <td><button class="admin-action-btn" onclick="downloadActivityList(${a.id})">📥 CSV</button></td>
       </tr>
     `;
   }).join("");
+}
+
+// ============ DOWNLOAD ACTIVITY LIST ============
+async function downloadActivityList(activityId) {
+  try {
+    const res = await fetch('/api/registrations', {
+      headers: { 'Authorization': `Bearer ${ADMIN_PASSWORD}` }
+    });
+    if (!res.ok) throw new Error("Failed");
+    const data = await res.json();
+
+    const activity = ACTIVITIES.find(a => a.id === activityId);
+    if (!activity) return;
+
+    const filtered = (data.registrations || []).filter(r =>
+      Array.isArray(r.activityIds) && r.activityIds.includes(activityId)
+    );
+
+    const header = "Nombre,Grado,Grupo,Código,Fecha de Registro";
+    const rows = filtered.map(r =>
+      `"${r.name || ""}","${r.grade || ""}","${r.group || ""}","${r.accessCode || ""}","${r.timestamp || ""}"`
+    );
+    const csv = [header, ...rows].join("\n");
+
+    const blob = new Blob(["\uFEFF" + csv], { type: "text/csv;charset=utf-8;" });
+    const url = URL.createObjectURL(blob);
+    const a = document.createElement("a");
+    a.href = url;
+    a.download = `${activity.name.toLowerCase().replace(/\s+/g, "_")}_inscritos.csv`;
+    document.body.appendChild(a);
+    a.click();
+    document.body.removeChild(a);
+    URL.revokeObjectURL(url);
+  } catch (err) {
+    console.error("Error descargando lista:", err);
+    alert("Error al descargar la lista. Intenta de nuevo.");
+  }
 }
 
 // ============ LOGS SUMMARY ============

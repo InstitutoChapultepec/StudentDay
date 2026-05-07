@@ -5,7 +5,7 @@ const redis = Redis.fromEnv();
 
 // We need the max caps to enforce hard limits
 const MAX_CAPS = {
-  1: 32, 2: 36, 3: 16, 4: 32, 5: 36, 6: 30
+  1: 32, 2: 36, 3: 16, 4: 32, 5: 36, 6: 30, 7: 50, 8: 40, 9: 107, 10: 50, 11: 107
 };
 
 export default async function handler(req, res) {

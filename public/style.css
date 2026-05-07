@@ -83,6 +83,7 @@ ul{list-style:none}
 .hero__particles .particle{position:absolute;width:8px;height:8px;border-radius:50%;background:var(--green-400);opacity:.35;animation:float 6s ease-in-out infinite}
 @keyframes float{0%,100%{transform:translateY(0) scale(1)}50%{transform:translateY(-30px) scale(1.2)}}
 .hero__content{position:relative;z-index:1}
+.hero__logo{display:block;margin:0 auto 28px;width:clamp(150px,28vw,200px);height:auto;padding:18px;background:rgba(255,255,255,0.95);border-radius:20px;box-shadow:0 8px 32px rgba(0,0,0,0.25);animation:fadeUp .5s ease both}
 .hero__badge{display:inline-block;padding:6px 18px;border-radius:var(--radius-full);background:rgba(255,255,255,0.1);color:#fff;backdrop-filter:blur(4px);font-weight:600;font-size:.85rem;margin-bottom:20px;animation:fadeUp .5s ease .1s both}
 .hero__title{font-size:clamp(2.8rem,8vw,5rem);font-weight:800;line-height:1.05;margin-bottom:16px;color:#fff}
 .hero__title .highlight{background:var(--gradient);-webkit-background-clip:text;-webkit-text-fill-color:transparent;background-clip:text}
@@ -193,8 +194,8 @@ ul{list-style:none}
 .modal__capacity-value{font-weight:700;color:var(--green-700)}
 
 /* ===== REGISTER FORM ===== */
-.register-wrapper{max-width:520px;margin:0 auto;padding:0 20px 60px;position:relative}
-.register-form{padding:24px 0 0}
+.register-wrapper{max-width:520px;margin:0 auto;padding:0 20px 60px;position:relative;display:flex;flex-direction:column;align-items:center;min-height:50vh;justify-content:center}
+.register-form{padding:24px 0 0;width:100%}
 .form-group{margin-bottom:20px}
 .form-row{display:grid;grid-template-columns:1fr 1fr;gap:16px}
 .form-group label{display:block;font-weight:600;font-size:.9rem;margin-bottom:6px;color:var(--green-800)}
@@ -503,9 +504,22 @@ ul{list-style:none}
 /* Admin select */
 .admin-select{padding:8px 14px;border-radius:8px;border:1px solid var(--navy-100);font-size:.85rem;font-weight:600;cursor:pointer;background:var(--surface)}
 
-/* JSON editor */
+/* JSON editor (legacy) */
 .admin-json-editor{width:100%;min-height:300px;font-family:'Courier New',monospace;font-size:.82rem;padding:16px;border:1px solid var(--navy-100);border-radius:var(--radius-sm);background:#0a1b3f;color:#a5f3fc;resize:vertical;line-height:1.6}
 .admin-json-editor:focus{outline:none;border-color:var(--green-500);box-shadow:0 0 0 3px rgba(79,163,42,0.15)}
+
+/* Visual Bracket Editor */
+.admin-bracket-controls{display:flex;gap:10px;align-items:center}
+.admin-bracket-visual{margin-top:16px;overflow-x:auto;padding:12px 0}
+.admin-bracket-teams{margin-top:16px;padding:16px;background:var(--surface);border:1px solid var(--navy-100);border-radius:var(--radius-sm)}
+.admin-bracket-teams h3{margin:0 0 12px;font-size:.95rem;color:var(--text-secondary)}
+.admin-teams-grid{display:grid;grid-template-columns:repeat(auto-fill,minmax(200px,1fr));gap:8px}
+.admin-team-row{display:flex;align-items:center;gap:8px}
+.admin-team-row label{font-size:.8rem;color:var(--text-muted);min-width:24px;font-weight:600}
+.bracket-edit-name{border:none;border-bottom:2px solid var(--navy-100);background:transparent;font-size:.85rem;padding:4px 6px;width:100%;color:var(--text-primary);font-family:inherit;transition:border-color .2s}
+.bracket-edit-name:focus{outline:none;border-bottom-color:var(--green-500)}
+.bracket-edit-score{width:50px;border:none;border-bottom:2px solid var(--navy-100);background:transparent;text-align:center;font-size:.85rem;font-weight:700;padding:4px;color:var(--text-primary);font-family:inherit;transition:border-color .2s}
+.bracket-edit-score:focus{outline:none;border-bottom-color:var(--green-500)}
 
 /* Admin feedback */
 .admin-feedback{font-size:.85rem;margin-top:10px;font-weight:600;min-height:22px}
