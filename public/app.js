@@ -508,10 +508,11 @@ function renderRegisterChecklist() {
     let itemsHtml = dayActivities.map(a => {
       const isFull = a.filledSpots >= a.maxParticipants;
       const spotsLeft = a.maxParticipants - a.filledSpots;
+      const isSelected = registrationSelection.has(a.id);
       
       return `
         <label class="checklist-item ${isFull ? "checklist-item--disabled" : ""}">
-          <input type="${inputType}" name="${inputName}" value="${a.id}" ${isFull ? "disabled" : ""}>
+          <input type="${inputType}" name="${inputName}" value="${a.id}" ${isFull && !isSelected ? "disabled" : ""} ${isSelected ? "checked" : ""}>
           <div class="checklist-item__content">
             <span class="checklist-item__emoji">${a.emoji}</span>
             <span class="checklist-item__name">${a.name}</span>
@@ -535,10 +536,26 @@ function renderRegisterChecklist() {
 }
 renderRegisterChecklist();
 
+function syncRegistrationSelectionFromDOM() {
+  registrationSelection = new Set(
+    Array.from(document.querySelectorAll("#regChecklist input:checked"))
+      .map((input) => parseInt(input.value))
+      .filter((id) => Number.isInteger(id))
+  );
+}
+
+const regChecklist = $("#regChecklist");
+if (regChecklist) {
+  regChecklist.addEventListener("change", () => {
+    syncRegistrationSelectionFromDOM();
+  });
+}
+
 // Removed the spots indicator logic since the checklist handles it natively
 
 let currentStudent = null;
 let currentAccessCode = "";
+let registrationSelection = new Set();
 
 // STEP 1: Verify Access Code
 $("#verifyForm").addEventListener("submit", async (e) => {
@@ -558,6 +575,7 @@ $("#verifyForm").addEventListener("submit", async (e) => {
     if (data.success) {
       currentStudent = data.student;
       currentAccessCode = code;
+      registrationSelection = new Set(Array.isArray(data.previousActivityIds) ? data.previousActivityIds : []);
       
       // Update UI
       $("#displayStudentName").textContent = currentStudent.name;
@@ -566,13 +584,9 @@ $("#verifyForm").addEventListener("submit", async (e) => {
       $("#registerStep1").style.display = "none";
       $("#registerStep2").style.display = "block";
 
-      // If the student already registered before, preload their selections for editing.
-      $$("#regChecklist input[type='checkbox']").forEach((input) => {
-        input.checked = Array.isArray(data.previousActivityIds)
-          ? data.previousActivityIds.includes(parseInt(input.value))
-          : false;
-      });
-      
+      // Render immediately so previous selections are visible before any async refresh.
+      renderRegisterChecklist();
+
       // Refresh checklist with latest counts
       fetchActivities();
     } else {
@@ -590,6 +604,7 @@ $("#verifyForm").addEventListener("submit", async (e) => {
 $("#backToStep1Btn").addEventListener("click", () => {
   currentStudent = null;
   currentAccessCode = "";
+  registrationSelection = new Set();
   $("#accessCode").value = "";
   $("#registerStep2").style.display = "none";
   $("#registerStep1").style.display = "block";
