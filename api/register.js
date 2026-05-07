@@ -92,9 +92,9 @@ export default async function handler(req, res) {
 
     const p = redis.pipeline();
     p.hset(`student:${accessCode}`, newReg);
-    if (!isUpdate) {
-      p.rpush('registrations', accessCode); // Add to master list if new
-    }
+    // Ensure master list keeps one unique entry per student code.
+    p.lrem('registrations', 0, accessCode);
+    p.rpush('registrations', accessCode);
     await p.exec();
 
     // Log the event

@@ -20,8 +20,10 @@ export default async function handler(req, res) {
       return res.status(200).json({ registrations: [] });
     }
 
+    const uniqueCodes = [...new Set(codes)];
+
     const p = redis.pipeline();
-    codes.forEach(code => p.hgetall(`student:${code}`));
+    uniqueCodes.forEach(code => p.hgetall(`student:${code}`));
     const results = await p.exec();
 
     // Map and parse activityIds

@@ -565,6 +565,13 @@ $("#verifyForm").addEventListener("submit", async (e) => {
       
       $("#registerStep1").style.display = "none";
       $("#registerStep2").style.display = "block";
+
+      // If the student already registered before, preload their selections for editing.
+      $$("#regChecklist input[type='checkbox']").forEach((input) => {
+        input.checked = Array.isArray(data.previousActivityIds)
+          ? data.previousActivityIds.includes(parseInt(input.value))
+          : false;
+      });
       
       // Refresh checklist with latest counts
       fetchActivities();
