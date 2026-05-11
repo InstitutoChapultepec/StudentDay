@@ -1704,44 +1704,43 @@ renderRegisterChecklist();
 renderWinners("all");
 renderBracket(currentSport);
 
- / /   = = = = = = = = = = = =   S E T T I N G S   M A N A G E M E N T   = = = = = = = = = = = = 
- $ ( " # s a v e S e t t i n g s B t n " ) ? . a d d E v e n t L i s t e n e r ( " c l i c k " ,   a s y n c   ( )   = >   { 
-     c o n s t   n e w S e t t i n g s   =   { 
-         e v e n t N a m e :   $ ( " # s e t t i n g E v e n t N a m e " ) . v a l u e   | |   " S e m a n a   d e l   E s t u d i a n t e " , 
-         e v e n t S u b t i t l e :   $ ( " # s e t t i n g E v e n t S u b t i t l e " ) . v a l u e   | |   " U n a   s e m a n a   l l e n a   d e   c o m p e t e n c i a s . . . " , 
-         s t a t A c t i v i t i e s :   p a r s e I n t ( $ ( " # s e t t i n g S t a t A c t i v i t i e s " ) . v a l u e )   | |   1 2 , 
-         s t a t S t u d e n t s :   p a r s e I n t ( $ ( " # s e t t i n g S t a t S t u d e n t s " ) . v a l u e )   | |   1 0 7 , 
-         s t a t D a y s :   p a r s e I n t ( $ ( " # s e t t i n g S t a t D a y s " ) . v a l u e )   | |   5 , 
-         e x a m D a y s :   $ ( " # s e t t i n g E x a m D a y s " ) . v a l u e   | |   " " 
-     } ; 
- 
-     t r y   { 
-         c o n s t   r e s   =   a w a i t   f e t c h ( " / a p i / s e t t i n g s " ,   { 
-             m e t h o d :   " P O S T " , 
-             h e a d e r s :   { 
-                 " C o n t e n t - T y p e " :   " a p p l i c a t i o n / j s o n " , 
-                 " A u t h o r i z a t i o n " :   ` B e a r e r   $ { A D M I N _ P A S S W O R D } ` 
-             } , 
-             b o d y :   J S O N . s t r i n g i f y ( {   s e t t i n g s :   n e w S e t t i n g s   } ) 
-         } ) ; 
- 
-         i f   ( ! r e s . o k )   t h r o w   n e w   E r r o r ( " F a i l e d   t o   s a v e   s e t t i n g s " ) ; 
- 
-         S I T E _ S E T T I N G S   =   n e w S e t t i n g s ; 
-         a p p l y S e t t i n g s T o D O M ( ) ; 
-         r e n d e r S c h e d u l e ( ) ;   / /   R e f r e s h   s c h e d u l e   e x a m   b a d g e s 
- 
-         c o n s t   f e e d b a c k   =   $ ( " # a d m i n S e t t i n g s F e e d b a c k " ) ; 
-         f e e d b a c k . t e x t C o n t e n t   =   " '  C o n f i g u r a c i � n   g u a r d a d a   e x i t o s a m e n t e . " ; 
-         f e e d b a c k . c l a s s N a m e   =   " a d m i n - f e e d b a c k   a d m i n - f e e d b a c k - - s u c c e s s " ; 
-         s e t T i m e o u t ( ( )   = >   {   f e e d b a c k . t e x t C o n t e n t   =   " " ;   } ,   3 0 0 0 ) ; 
- 
-     }   c a t c h   ( e r r )   { 
-         c o n s o l e . e r r o r ( e r r ) ; 
-         c o n s t   f e e d b a c k   =   $ ( " # a d m i n S e t t i n g s F e e d b a c k " ) ; 
-         f e e d b a c k . t e x t C o n t e n t   =   " L'  E r r o r   a l   g u a r d a r   l a   c o n f i g u r a c i � n . " ; 
-         f e e d b a c k . c l a s s N a m e   =   " a d m i n - f e e d b a c k   a d m i n - f e e d b a c k - - e r r o r " ; 
-     } 
- } ) ; 
-  
- 
+// ============ SETTINGS MANAGEMENT ============
+$("#saveSettingsBtn")?.addEventListener("click", async () => {
+  const newSettings = {
+    eventName: $("#settingEventName").value || "Semana del Estudiante",
+    eventSubtitle: $("#settingEventSubtitle").value || "Una semana llena de competencias...",
+    statActivities: parseInt($("#settingStatActivities").value) || 12,
+    statStudents: parseInt($("#settingStatStudents").value) || 107,
+    statDays: parseInt($("#settingStatDays").value) || 5,
+    examDays: $("#settingExamDays").value || ""
+  };
+
+  try {
+    const res = await fetch("/api/settings", {
+      method: "POST",
+      headers: {
+        "Content-Type": "application/json",
+        "Authorization": `Bearer ${ADMIN_PASSWORD}`
+      },
+      body: JSON.stringify({ settings: newSettings })
+    });
+
+    if (!res.ok) throw new Error("Failed to save settings");
+
+    SITE_SETTINGS = newSettings;
+    applySettingsToDOM();
+    renderSchedule(); // Refresh schedule exam badges
+
+    const feedback = $("#adminSettingsFeedback");
+    feedback.textContent = "✅ Configuración guardada exitosamente.";
+    feedback.className = "admin-feedback admin-feedback--success";
+    setTimeout(() => { feedback.textContent = ""; }, 3000);
+
+  } catch (err) {
+    console.error(err);
+    const feedback = $("#adminSettingsFeedback");
+    feedback.textContent = "❌ Error al guardar la configuración.";
+    feedback.className = "admin-feedback admin-feedback--error";
+  }
+});
+
