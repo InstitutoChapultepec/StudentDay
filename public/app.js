@@ -1,3 +1,49 @@
+/* ===== GLOBAL SETTINGS ===== */
+let SITE_SETTINGS = {
+  eventName: "Semana del Estudiante",
+  eventSubtitle: "Una semana llena de competencias, creatividad y espíritu escolar.",
+  statActivities: 12,
+  statStudents: 107,
+  statDays: 5,
+  examDays: "Lunes, Martes, Miércoles"
+};
+
+async function fetchSettings() {
+  try {
+    const res = await fetch('/api/settings');
+    const data = await res.json();
+    if (data.settings) {
+      SITE_SETTINGS = data.settings;
+      applySettingsToDOM();
+    }
+  } catch(e) { console.error("Error fetching settings", e); }
+}
+
+function applySettingsToDOM() {
+  const el = (id, val) => { if(document.getElementById(id)) document.getElementById(id).innerHTML = val; }
+  const attr = (id, val) => { if(document.getElementById(id)) document.getElementById(id).dataset.count = val; }
+  
+  el("heroTitle", `${SITE_SETTINGS.eventName}<br /><span class="highlight">Estudiante</span>`);
+  el("heroSubtitle", `${SITE_SETTINGS.eventSubtitle}<br />¿Estás listo para crear recuerdos?`);
+  
+  el("statActivitiesNumber", SITE_SETTINGS.statActivities);
+  attr("statActivitiesNumber", SITE_SETTINGS.statActivities);
+  el("statStudentsNumber", SITE_SETTINGS.statStudents);
+  attr("statStudentsNumber", SITE_SETTINGS.statStudents);
+  el("statDaysNumber", SITE_SETTINGS.statDays);
+  attr("statDaysNumber", SITE_SETTINGS.statDays);
+  
+  const v = (id, val) => { if(document.getElementById(id)) document.getElementById(id).value = val; }
+  v("settingEventName", SITE_SETTINGS.eventName);
+  v("settingEventSubtitle", SITE_SETTINGS.eventSubtitle);
+  v("settingStatActivities", SITE_SETTINGS.statActivities);
+  v("settingStatStudents", SITE_SETTINGS.statStudents);
+  v("settingStatDays", SITE_SETTINGS.statDays);
+  v("settingExamDays", SITE_SETTINGS.examDays);
+}
+
+fetchSettings();
+
 /* ===== DATA ===== */
 let ACTIVITIES = [
   {
@@ -100,156 +146,7 @@ const WINNER_CATEGORIES = [
   { key: "fun", label: "🎉 Diversión" },
 ];
 
-/* ===== SCHEDULE DATA ===== */
-const SCHEDULE_DATA = {
-  week1: {
-    title: "Semana del Estudiante",
-    subtitle: "Mayo 18 – 22, 2026",
-    days: [
-      {
-        day: "Lunes", date: 18, month: 5, year: 2026, hasExam: true,
-        activities: [
-          {
-            emoji: "♟️", name: "Ajedrez", organizer: "Murguía", type: "deportes",
-            location: "Salón de usos múltiples", time: "Después de examen",
-            description: "Torneo de ajedrez entre todas las secciones."
-          },
-          {
-            emoji: "🏈", name: "Tochito", organizer: "Many", type: "deportes",
-            location: "Cancha principal", time: "Después de examen",
-            description: "Partidos de tochito bandera por equipos."
-          },
-        ]
-      },
-      {
-        day: "Martes", date: 19, month: 5, year: 2026, hasExam: true,
-        activities: [
-          {
-            emoji: "🏓", name: "Final Ping Pong", organizer: "Jorge F.", type: "deportes",
-            location: "Gimnasio", time: "Después de examen",
-            description: "Gran final del torneo de ping pong."
-          },
-          {
-            emoji: "🏀", name: "Final Básquet", organizer: "Mauricio", type: "deportes",
-            location: "Cancha techada", time: "Después de examen",
-            description: "Final del torneo de básquetbol 3v3."
-          },
-        ]
-      },
-      {
-        day: "Miércoles", date: 20, month: 5, year: 2026, hasExam: true,
-        activities: [
-          {
-            emoji: "⚽", name: "Final Fútbol", organizer: "Ramón / Camacho", type: "deportes",
-            location: "Cancha principal", time: "Después de examen",
-            description: "Gran final del torneo de fútbol."
-          },
-          {
-            emoji: "🏐", name: "Final Voleibol", organizer: "Carlos", type: "deportes",
-            location: "Cancha techada", time: "Después de examen",
-            description: "Final del torneo de voleibol."
-          },
-        ]
-      },
-      {
-        day: "Jueves", date: 21, month: 5, year: 2026, hasExam: true,
-        activities: [
-          {
-            emoji: "🎈", name: "Globos", organizer: "Camacho", type: "diversión",
-            location: "Patio central", time: "Después de examen",
-            description: "Competencia de globos entre secciones."
-          },
-          {
-            emoji: "🎮", name: "Videojuegos", organizer: "Hugo / Temo", type: "diversión",
-            location: "Salón de cómputo", time: "Después de examen",
-            description: "Torneo de videojuegos — ¡trae tu mejor estrategia!"
-          },
-          {
-            emoji: "🗺️", name: "Búsqueda del tesoro", organizer: "Jorge / Paco", type: "diversión",
-            location: "Todo el campus", time: "Después de examen",
-            description: "Búsqueda de pistas y tesoros por todo el campus."
-          },
-          {
-            emoji: "🏃", name: "Pista comando", organizer: "Jorge / Paco", type: "deportes",
-            location: "Área deportiva", time: "Después de examen",
-            description: "Circuito de obstáculos y retos físicos."
-          },
-        ]
-      },
-      {
-        day: "Viernes", date: 22, month: 5, year: 2026, hasExam: false, isFiesta: true,
-        activities: [
-          {
-            emoji: "🎉", name: "Beyond / Fiesta", organizer: "Comité estudiantil", type: "fiesta",
-            location: "Campus completo", time: "Todo el día",
-            description: "¡El gran cierre de la Semana del Estudiante! Música, comida y diversión."
-          },
-        ]
-      },
-    ]
-  },
-  week2: {
-    title: "High Week",
-    subtitle: "Mayo 25 – 29, 2026",
-    days: [
-      {
-        day: "Lunes", date: 25, month: 5, year: 2026, hasExam: false,
-        activities: [
-          {
-            emoji: "🏁", name: "Rally / HWKC", organizer: "Temo / Denis", type: "diversión",
-            location: "Todo el campus", time: "Todo el día",
-            description: "Rally de actividades y competencias por equipos."
-          },
-        ]
-      },
-      {
-        day: "Martes", date: 26, month: 5, year: 2026, hasExam: false,
-        activities: [
-          {
-            emoji: "📊", name: "Presentación de Proyectos", organizer: "Temo / Hugo", type: "académico",
-            location: "Auditorio", time: "Todo el día",
-            description: "Exposición de proyectos estudiantiles de todas las secciones."
-          },
-        ]
-      },
-      {
-        day: "Miércoles", date: 27, month: 5, year: 2026, hasExam: false,
-        activities: [
-          {
-            emoji: "🎨", name: "Espacio para Artes", organizer: "Fernando Correa / Oscar Corral", type: "artes",
-            location: "Salón de usos múltiples", time: "Todo el día",
-            description: "Exhibición de arte, música y expresión creativa."
-          },
-        ]
-      },
-      {
-        day: "Jueves", date: 28, month: 5, year: 2026, hasExam: false,
-        activities: [
-          {
-            emoji: "🚶", name: "Pasillo", organizer: "Mauricio", type: "cultural",
-            location: "Pasillos del campus", time: "Mañana",
-            description: "Recorrido cultural por los pasillos del campus."
-          },
-          {
-            emoji: "📜", name: "Presentación de tesinas (12vo)", organizer: "12vo grado", type: "académico",
-            location: "Auditorio", time: "Todo el día",
-            description: "Culminación de presentaciones de tesinas de 12vo grado."
-          },
-        ]
-      },
-      {
-        day: "Viernes", date: 29, month: 5, year: 2026, hasExam: false, isLibre: true,
-        activities: [
-          {
-            emoji: "☀️", name: "Libre", organizer: "", type: "libre",
-            location: "—", time: "Mañana",
-            description: "Tiempo libre para disfrutar."
-          },
-        ]
-      },
-    ]
-  },
-};
+/* SCHEDULE DATA is now dynamically generated from ACTIVITIES */
 
 /* ===== DOM REFS ===== */
 const $ = (sel) => document.querySelector(sel);
@@ -1079,38 +976,39 @@ renderBracket("basketball");
 /* ===== OLD ADMIN PANEL (removed) ===== */
 
 /* ===== SCHEDULE ===== */
-function isToday(day) {
-  const now = new Date();
-  return now.getDate() === day.date && (now.getMonth() + 1) === day.month && now.getFullYear() === day.year;
-}
-
-const MESES = ["", "Enero", "Febrero", "Marzo", "Abril", "Mayo", "Junio", "Julio", "Agosto", "Septiembre", "Octubre", "Noviembre", "Diciembre"];
-
-function renderSchedule(weekKey) {
-  const week = SCHEDULE_DATA[weekKey];
+function renderSchedule() {
   const container = $("#scheduleDays");
+  if (!container) return;
+  
+  const daysOrder = ["Lunes", "Martes", "Miércoles", "Jueves", "Viernes", "Sábado", "Domingo"];
+  const grouped = {};
+  
+  ACTIVITIES.forEach(act => {
+    const day = act.day || "Lunes";
+    if (!grouped[day]) grouped[day] = [];
+    grouped[day].push(act);
+  });
+  
+  const examDaysList = (SITE_SETTINGS.examDays || "").split(",").map(d => d.trim().toLowerCase());
 
-  container.innerHTML = week.days.map((day) => {
-    const today = isToday(day);
-    const fiesta = day.isFiesta ? "day-card--fiesta" : "";
-    const libre = day.isLibre ? "day-card--libre" : "";
-    const todayCls = today ? "day-card--today" : "";
-
-    let html = `<div class="day-card ${todayCls} ${fiesta} ${libre}">`;
-    html += `<span class="day-card__today-badge">📌 HOY</span>`;
-    html += `<div class="day-card__header">`;
-    html += `<span class="day-card__day">${day.day} ${day.date} de ${MESES[day.month]}</span>`;
-    html += `</div>`;
-
-    if (day.hasExam) {
+  let html = "";
+  daysOrder.forEach(dayName => {
+    if (!grouped[dayName] || grouped[dayName].length === 0) return;
+    
+    const hasExam = examDaysList.includes(dayName.toLowerCase());
+    
+    html += `<div class="day-card">`;
+    html += `<div class="day-card__header"><span class="day-card__day">${dayName}</span></div>`;
+    
+    if (hasExam) {
       html += `<div class="day-card__exam">📝 Examen — Primeras 2 horas</div>`;
     }
-
+    
     html += `<div class="day-card__activities">`;
-    day.activities.forEach((act, ai) => {
+    grouped[dayName].forEach((act, ai) => {
       const orgLine = act.organizer ? `<div class="sched-activity__org">Organiza: ${act.organizer}</div>` : "";
       html += `
-        <div class="sched-activity" data-idx="${ai}">
+        <div class="sched-activity" data-idx="${dayName}-${ai}">
           <div class="sched-activity__row">
             <span class="sched-activity__emoji">${act.emoji}</span>
             <div class="sched-activity__info">
@@ -1121,28 +1019,23 @@ function renderSchedule(weekKey) {
           </div>
           <div class="sched-activity__detail">
             <dl class="sched-detail-grid">
-              <dt>📍 Lugar</dt><dd>${act.location}</dd>
-              <dt>🕐 Horario</dt><dd>${act.time}</dd>
+              <dt>📍 Lugar</dt><dd>${act.location || "—"}</dd>
+              <dt>🕐 Horario</dt><dd>${act.time || "—"}</dd>
             </dl>
-            <p class="sched-activity__desc">${act.description}</p>
+            <p class="sched-activity__desc">${act.desc || act.description || ""}</p>
           </div>
         </div>`;
     });
     html += `</div></div>`;
-    return html;
-  }).join("");
+  });
+  
+  container.innerHTML = html;
 }
 
-renderSchedule("week1");
-
-// Week tab switching
-$$(".schedule-tab").forEach((tab) => {
-  tab.addEventListener("click", () => {
-    $$(".schedule-tab").forEach((t) => t.classList.remove("active"));
-    tab.classList.add("active");
-    renderSchedule(tab.dataset.week);
-  });
-});
+// Initial render
+setTimeout(() => {
+  renderSchedule();
+}, 500);
 
 // Activity expansion toggle
 document.addEventListener("click", (e) => {
@@ -1364,7 +1257,9 @@ function openEditActivity(id) {
   $("#editActivityName").value = a.name;
   $("#editActivityDay").value = a.day || "Lunes";
   $("#editActivityCategory").value = a.category;
-  $("#editActivityDesc").value = a.desc;
+  $("#editActivityDesc").value = a.desc || a.description || "";
+  $("#editActivityLocation").value = a.location || "";
+  $("#editActivityOrganizer").value = a.organizer || "";
   $("#editActivityMax").value = a.maxParticipants;
   $("#editActivityTime").value = a.time;
   $("#editActivityRules").value = (a.rules || []).join("\n");
@@ -1379,6 +1274,8 @@ function openAddActivity() {
   $("#editActivityDay").value = "Lunes";
   $("#editActivityCategory").value = "sports";
   $("#editActivityDesc").value = "";
+  $("#editActivityLocation").value = "";
+  $("#editActivityOrganizer").value = "";
   $("#editActivityMax").value = "";
   $("#editActivityTime").value = "Después de examen";
   $("#editActivityRules").value = "";
@@ -1396,6 +1293,8 @@ $("#activityEditForm").addEventListener("submit", async (e) => {
     day: $("#editActivityDay").value,
     category: $("#editActivityCategory").value,
     desc: $("#editActivityDesc").value,
+    location: $("#editActivityLocation").value,
+    organizer: $("#editActivityOrganizer").value,
     maxParticipants: parseInt($("#editActivityMax").value) || 20,
     time: $("#editActivityTime").value,
     rules: $("#editActivityRules").value.split("\n").filter(r => r.trim()),
@@ -1661,7 +1560,11 @@ function renderAdminRegistrations() {
 
 // ============ RESET REGISTRATIONS ============
 $("#adminResetRegistrations")?.addEventListener("click", async () => {
-  if (!confirm("¿Restaurar TODOS los registros de estudiantes y reiniciar contadores de inscritos?")) return;
+  const confirmation = prompt("ATENCIÓN: Esta acción borrará todos los registros de estudiantes. Escribe 'RESETEAR' para confirmar:");
+  if (confirmation !== "RESETEAR") {
+    alert("Cancelado. No se escribio 'RESETEAR'.");
+    return;
+  }
   try {
     const res = await fetch('/api/reset-registrations', {
       method: 'POST',
@@ -1800,3 +1703,45 @@ renderActivities("all");
 renderRegisterChecklist();
 renderWinners("all");
 renderBracket(currentSport);
+
+ / /   = = = = = = = = = = = =   S E T T I N G S   M A N A G E M E N T   = = = = = = = = = = = = 
+ $ ( " # s a v e S e t t i n g s B t n " ) ? . a d d E v e n t L i s t e n e r ( " c l i c k " ,   a s y n c   ( )   = >   { 
+     c o n s t   n e w S e t t i n g s   =   { 
+         e v e n t N a m e :   $ ( " # s e t t i n g E v e n t N a m e " ) . v a l u e   | |   " S e m a n a   d e l   E s t u d i a n t e " , 
+         e v e n t S u b t i t l e :   $ ( " # s e t t i n g E v e n t S u b t i t l e " ) . v a l u e   | |   " U n a   s e m a n a   l l e n a   d e   c o m p e t e n c i a s . . . " , 
+         s t a t A c t i v i t i e s :   p a r s e I n t ( $ ( " # s e t t i n g S t a t A c t i v i t i e s " ) . v a l u e )   | |   1 2 , 
+         s t a t S t u d e n t s :   p a r s e I n t ( $ ( " # s e t t i n g S t a t S t u d e n t s " ) . v a l u e )   | |   1 0 7 , 
+         s t a t D a y s :   p a r s e I n t ( $ ( " # s e t t i n g S t a t D a y s " ) . v a l u e )   | |   5 , 
+         e x a m D a y s :   $ ( " # s e t t i n g E x a m D a y s " ) . v a l u e   | |   " " 
+     } ; 
+ 
+     t r y   { 
+         c o n s t   r e s   =   a w a i t   f e t c h ( " / a p i / s e t t i n g s " ,   { 
+             m e t h o d :   " P O S T " , 
+             h e a d e r s :   { 
+                 " C o n t e n t - T y p e " :   " a p p l i c a t i o n / j s o n " , 
+                 " A u t h o r i z a t i o n " :   ` B e a r e r   $ { A D M I N _ P A S S W O R D } ` 
+             } , 
+             b o d y :   J S O N . s t r i n g i f y ( {   s e t t i n g s :   n e w S e t t i n g s   } ) 
+         } ) ; 
+ 
+         i f   ( ! r e s . o k )   t h r o w   n e w   E r r o r ( " F a i l e d   t o   s a v e   s e t t i n g s " ) ; 
+ 
+         S I T E _ S E T T I N G S   =   n e w S e t t i n g s ; 
+         a p p l y S e t t i n g s T o D O M ( ) ; 
+         r e n d e r S c h e d u l e ( ) ;   / /   R e f r e s h   s c h e d u l e   e x a m   b a d g e s 
+ 
+         c o n s t   f e e d b a c k   =   $ ( " # a d m i n S e t t i n g s F e e d b a c k " ) ; 
+         f e e d b a c k . t e x t C o n t e n t   =   " '  C o n f i g u r a c i � n   g u a r d a d a   e x i t o s a m e n t e . " ; 
+         f e e d b a c k . c l a s s N a m e   =   " a d m i n - f e e d b a c k   a d m i n - f e e d b a c k - - s u c c e s s " ; 
+         s e t T i m e o u t ( ( )   = >   {   f e e d b a c k . t e x t C o n t e n t   =   " " ;   } ,   3 0 0 0 ) ; 
+ 
+     }   c a t c h   ( e r r )   { 
+         c o n s o l e . e r r o r ( e r r ) ; 
+         c o n s t   f e e d b a c k   =   $ ( " # a d m i n S e t t i n g s F e e d b a c k " ) ; 
+         f e e d b a c k . t e x t C o n t e n t   =   " L'  E r r o r   a l   g u a r d a r   l a   c o n f i g u r a c i � n . " ; 
+         f e e d b a c k . c l a s s N a m e   =   " a d m i n - f e e d b a c k   a d m i n - f e e d b a c k - - e r r o r " ; 
+     } 
+ } ) ; 
+  
+ 

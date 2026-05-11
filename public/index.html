@@ -40,8 +40,8 @@
         <div class="hero__content">
           <img src="img/logo.png" alt="Instituto Chapultepec Norte" class="hero__logo" />
           <span class="hero__badge">🎉 Edición 2026</span>
-          <h1 class="hero__title">Semana del<br /><span class="highlight">Estudiante</span></h1>
-          <p class="hero__subtitle">
+          <h1 class="hero__title" id="heroTitle">Semana del<br /><span class="highlight">Estudiante</span></h1>
+          <p class="hero__subtitle" id="heroSubtitle">
             Una semana llena de competencias, creatividad y espíritu escolar.<br />
             ¿Estás listo para crear recuerdos?
           </p>
@@ -52,15 +52,15 @@
         </div>
         <div class="hero__stats">
           <div class="stat-card">
-            <span class="stat-card__number" data-count="12">0</span>
+            <span class="stat-card__number" id="statActivitiesNumber" data-count="12">0</span>
             <span class="stat-card__label">Actividades</span>
           </div>
           <div class="stat-card">
-            <span class="stat-card__number" data-count="107">0</span>
+            <span class="stat-card__number" id="statStudentsNumber" data-count="107">0</span>
             <span class="stat-card__label">Alumnos</span>
           </div>
           <div class="stat-card">
-            <span class="stat-card__number" data-count="5">0</span>
+            <span class="stat-card__number" id="statDaysNumber" data-count="5">0</span>
             <span class="stat-card__label">Días</span>
           </div>
         </div>
@@ -251,10 +251,7 @@
         <p class="page-header__sub">Dos semanas de competencias, cultura y diversión.</p>
       </div>
 
-      <div class="schedule-tabs">
-        <button class="schedule-tab active" data-week="week1">Semana 1 — Semana del Estudiante</button>
-        <button class="schedule-tab" data-week="week2">Semana 2 — Semana High</button>
-      </div>
+
 
       <div class="schedule-days" id="scheduleDays">
         <!-- Day cards injected by JS -->
@@ -307,6 +304,7 @@
           <button class="admin-tab" data-admin-tab="winners">🥇 Ganadores</button>
           <button class="admin-tab" data-admin-tab="registrations">📊 Registros</button>
           <button class="admin-tab" data-admin-tab="logs">📡 Logs</button>
+          <button class="admin-tab" data-admin-tab="settings">⚙️ Configuración</button>
         </div>
 
         <!-- Tab: Activities -->
@@ -423,6 +421,43 @@
             </table>
           </div>
         </div>
+
+        <!-- Tab: Settings -->
+        <div class="admin-tab-content" id="adminTab-settings">
+          <div class="admin-section-header">
+            <h2>Configuración del Evento</h2>
+            <button class="btn btn--primary btn--sm" id="saveSettingsBtn">Guardar Cambios</button>
+          </div>
+          <form id="adminSettingsForm" style="max-width: 600px; padding: 0 20px;">
+            <div class="admin-form-group">
+              <label>Título del Evento (Hero)</label>
+              <input type="text" id="settingEventName" placeholder="Semana del Estudiante" />
+            </div>
+            <div class="admin-form-group">
+              <label>Subtítulo del Evento</label>
+              <input type="text" id="settingEventSubtitle" placeholder="Una semana llena..." />
+            </div>
+            <div class="admin-form-row">
+              <div class="admin-form-group">
+                <label>Número de Actividades (Hero)</label>
+                <input type="number" id="settingStatActivities" />
+              </div>
+              <div class="admin-form-group">
+                <label>Número de Alumnos (Hero)</label>
+                <input type="number" id="settingStatStudents" />
+              </div>
+              <div class="admin-form-group">
+                <label>Número de Días (Hero)</label>
+                <input type="number" id="settingStatDays" />
+              </div>
+            </div>
+            <div class="admin-form-group">
+              <label>Días de Examen (separados por coma)</label>
+              <input type="text" id="settingExamDays" placeholder="Lunes, Martes, Miércoles" />
+            </div>
+            <p class="admin-feedback" id="adminSettingsFeedback"></p>
+          </form>
+        </div>
       </div>
 
       <!-- Activity Edit Modal -->
@@ -448,19 +483,36 @@
               <div class="admin-form-group">
                 <label>Día</label>
                 <select id="editActivityDay">
-                  <option>Lunes</option><option>Martes</option><option>Miércoles</option><option>Jueves</option><option>Viernes</option>
+                  <option value="Lunes">Lunes</option>
+                  <option value="Martes">Martes</option>
+                  <option value="Miércoles">Miércoles</option>
+                  <option value="Jueves">Jueves</option>
+                  <option value="Viernes">Viernes</option>
                 </select>
               </div>
               <div class="admin-form-group">
                 <label>Categoría</label>
                 <select id="editActivityCategory">
-                  <option value="sports">Deportes</option><option value="academic">Académico</option><option value="arts">Artes</option><option value="fun">Diversión</option>
+                  <option value="sports">🏅 Deportes</option>
+                  <option value="arts">🎨 Artes</option>
+                  <option value="academic">📚 Académico</option>
+                  <option value="fun">🎉 Diversión</option>
                 </select>
               </div>
             </div>
+            <div class="admin-form-row">
+              <div class="admin-form-group">
+                <label>Lugar</label>
+                <input type="text" id="editActivityLocation" placeholder="Cancha principal" />
+              </div>
+              <div class="admin-form-group">
+                <label>Organizador</label>
+                <input type="text" id="editActivityOrganizer" placeholder="Ej. Coach Many" />
+              </div>
+            </div>
             <div class="admin-form-group">
-              <label>Descripción</label>
-              <textarea id="editActivityDesc" rows="2"></textarea>
+              <label>Descripción Breve</label>
+              <input type="text" id="editActivityDesc" />
             </div>
             <div class="admin-form-row">
               <div class="admin-form-group">
