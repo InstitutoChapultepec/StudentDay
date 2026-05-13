@@ -83,6 +83,18 @@ export default async function handler(req, res) {
       filledSpots: counts[a.id] || 0
     }));
 
+    // 4. SELF-HEAL Redis counters
+    // Fixes drift between atomic INCR and actual hash records
+    try {
+      const pHeal = redis.pipeline();
+      activities.forEach(a => {
+        pHeal.set(`activity:${a.id}:count`, counts[a.id] || 0);
+      });
+      await pHeal.exec();
+    } catch(e) {
+      console.error("Failed to heal counters", e);
+    }
+
     return res.status(200).json({ activities });
   } catch (error) {
     console.error("Redis Error:", error);
